@@ -52,11 +52,11 @@
             </span>
             @endif
 
-            <h1 class="font-headline text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tighter mb-6">
-                {{ $settings['vision_headline'] ?? "Mencetak Generasi Qur'ani, Mandiri, dan Berprestasi." }}
+            <h1 class="font-hero text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tighter mb-6 animate-on-scroll">
+                {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span> dan <span class='text-secondary-fixed'>Agribisnis</span> Terpadu" !!}
             </h1>
-            <p class="text-xl text-emerald-50/80 max-w-xl mb-10 leading-relaxed font-medium">
-                {{ $settings['site_tagline'] ?? "Pendidikan Tahfidz terpadu, Boarding School kedisiplinan tinggi, dan Keterampilan Pertanian modern dalam satu ekosistem Qur'ani yang asri." }}
+            <p class="text-xl text-emerald-50/80 max-w-xl mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
+                {{ $settings['site_tagline'] ?? "SMK Al-Falah Boarding School" }}
             </p>
 
             <div class="flex flex-wrap gap-4">
