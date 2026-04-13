@@ -94,7 +94,7 @@
 
     {{-- Lightbox Modal (Alpine.js) --}}
     <div x-show="lightboxOpen" style="display: none;"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-sm"
+         class="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-sm"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"

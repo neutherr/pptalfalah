@@ -108,6 +108,17 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px)
         }
+        
+        /* JS Scroll Animation States */
+        body:not(.no-js) .js-reveal-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body:not(.no-js) .js-reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         .islamic-pattern-custom {
             background-image: url(https://lh3.googleusercontent.com/aida/ADBb0ujNA4-KUxCVK5sg3Xiz3dwHbNRRHvWhqsBmskN4s4hzEN10SoGudEDnSVkQrjajyrOFDrv6BbsHV0El5f0f9g4g8FEVwvcR-OSkuw3ECpzvjeu5fwhBOQMUIsAHsbFZ_z0LFsNp_ltrhmlJbKuBRB9lVPGODsFkKTxhX2tYKCDPM098tYwuzbyDvYX_2CLE18r14USZ0dPvRjT1wabpf9URLnmosqjc2ExmMuxI6Vjb2texbb17fXyLw4s1iaz7nJTNsbWQQKje);
             background-size: 600px;
@@ -387,6 +398,39 @@
 
 {{-- Alpine.js --}}
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+{{-- Global Reveal Animation --}}
+<script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select core elements you want to animate automatically upon scrolling down
+        const animateElements = document.querySelectorAll(`
+            .animate-on-scroll, 
+            section > .max-w-7xl, 
+            section .bg-surface-container, 
+            .grid > div.group, 
+            .bg-primary-container,
+            main > div > .flex,
+            article
+        `);
+
+        animateElements.forEach(el => el.classList.add('js-reveal-hidden'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Slight staggering effect if multiple elements appear at once
+                    setTimeout(() => {
+                        entry.target.classList.add('js-reveal-visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+        animateElements.forEach(el => observer.observe(el));
+    });
+</script>
 
 @yield('scripts')
 </body>
