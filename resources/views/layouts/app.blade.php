@@ -346,7 +346,7 @@
             <h5 class="text-white font-bold mb-6">Program Unggulan</h5>
             <ul class="space-y-4">
                 <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Tahfidz Al-Qur'an 30 Juz</a></li>
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">SMK Pertanian Modern</a></li>
+                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Informatika & Agribisnis</a></li>
                 <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Pondok Pesantren</a></li>
             </ul>
         </div>

@@ -53,7 +53,7 @@
             @endif
 
             <h1 class="font-hero text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tighter mb-6 animate-on-scroll">
-                {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span> dan <span class='text-secondary-fixed'>Agribisnis</span> Terpadu" !!}
+                {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span>, <span class='text-secondary-fixed'>Informatika</span> & Agribisnis Terpadu" !!}
             </h1>
             <p class="text-xl text-emerald-50/80 max-w-xl mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
                 {{ $settings['site_tagline'] ?? "SMK Al-Falah Boarding School" }}
@@ -112,9 +112,9 @@
                         Pondok Pesantren Tahfidz Al-Falah, didirikan oleh para praktisi bisnis, hafidz Qur'an dan juga aktifis dakwah, sangat memahami betul tentang pilihan arah dan jenjang pendidikan putra Anda saat ini. Oleh karena itu, kami telah mempersiapkan dengan sangat teliti, detail, dan menyeluruh 4 pilar keunggulan pembelajaran kami, yaitu:
                         <span class="block mt-3 font-semibold text-primary">
                             1. Tahfidz Al-Qur'an 30 Juz<br>
-                            2. SMK Pertanian Modern (Kemandirian Pangan)<br>
-                            3. Pendidikan Boarding School Menyeluruh<br>
-                            4. Pembekalan Agri-Preneurship (Kewirausahaan)
+                            2. Pendidikan Boarding School Menyeluruh<br>
+                            3. Program Keahlian Informatika<br>
+                            4. Program Keahlian Agribisnis Terpadu
                         </span>
                     </p>
                 </div>
@@ -125,7 +125,7 @@
                 <div class="absolute -inset-4 bg-primary/5 rounded-3xl transform rotate-3 z-0"></div>
                 <div class="absolute -inset-4 bg-secondary/10 rounded-3xl transform -rotate-2 z-0"></div>
                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDcZsxG5SewyK8JZxLEfM1O5zIBC2vkdGlO4r-Zhn0mpCQDYXv9rGfnQVwqBTqC9wEVNRq2mk6hqd9EgOQLG1jiWa6yI9diYAiHK3HgQEnDAheVLSWlMDBT0pATmMTfuhDL6fV9VLfrt5k90rQI22z1QwkZsjwrbBQAEGGcJf0rWnNfRNXbYzr9GSp-1xGT4LltlBYkpmSyWk_ULyz9GNrvbTdMZgbWUyXmwQAd8rZhVLJPnb4CUUSGbtHATx53HBlgBBsSUj9Yuw" 
-                     alt="Program Pertanian Al-Falah" 
+                     alt="Program Informatika dan Agribisnis Al-Falah" 
                      class="relative z-10 w-full h-[500px] object-cover rounded-2xl shadow-xl">
             </div>
         </div>
@@ -410,7 +410,7 @@
                 {{-- Fallback slides jika galeri kosong --}}
                 @foreach([
                     ['label' => 'Spiritualitas', 'title' => "Tahfidz Al-Qur'an Intensif",    'caption' => "Membentuk karakter qur'ani melalui bimbingan intensif."],
-                    ['label' => 'Kemandirian',   'title' => 'Pertanian Berbasis Teknologi',   'caption' => 'Integrasi sains dan alam dalam kurikulum agrikultur.'],
+                    ['label' => 'Kemandirian',   'title' => 'Informatika & Agribisnis',       'caption' => 'Integrasi teknologi digital dan inovasi agrikultur modern.'],
                     ['label' => 'Akademik',      'title' => 'Ruang Belajar Kolaboratif',      'caption' => 'Fasilitas modern untuk proses belajar mengajar.'],
                 ] as $i => $slide)
                 <div class="min-w-full md:min-w-[70%] snap-center shrink-0">

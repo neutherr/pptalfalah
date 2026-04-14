@@ -25,7 +25,7 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'logo',              'value' => '',                                'group' => 'general'],
             ['key' => 'favicon',           'value' => '',                                'group' => 'general'],
             ['key' => 'active_brochure_url','value' => '',                               'group' => 'general'],
-            ['key' => 'footer_description','value' => "Mewujudkan generasi qur'ani yang memiliki kecakapan hidup dan kemandirian melalui integrasi ilmu agama dan teknologi pertanian modern.", 'group' => 'general'],
+            ['key' => 'footer_description','value' => "Mewujudkan generasi qur'ani yang memiliki kecakapan hidup dan kemandirian melalui integrasi ilmu agama dan keterampilan Informatika serta Agribisnis Terpadu.", 'group' => 'general'],
 
             // ===================== VISI =====================
             ['key' => 'vision_headline',   'value' => "Mencetak Generasi Qur'ani, Mandiri, dan Berprestasi.", 'group' => 'vision'],
@@ -38,8 +38,8 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'mission_2_desc',    'value' => "Menanamkan kecintaan mendalam agar Al-Qur'an senantiasa menjadi pedoman dan inspirasi dalam setiap langkah kehidupan.", 'group' => 'vision'],
             ['key' => 'mission_3_title',   'value' => 'Keseimbangan Ilmu',      'group' => 'vision'],
             ['key' => 'mission_3_desc',    'value' => 'Menguasai integrasi ilmu pengetahuan umum dan teknologi masa depan yang selaras dengan nilai-nilai luhur berakhlakul karimah.', 'group' => 'vision'],
-            ['key' => 'mission_4_title',   'value' => 'Kemandirian Pangan',     'group' => 'vision'],
-            ['key' => 'mission_4_desc',    'value' => 'Membekali santri dengan kompetensi inovatif untuk mengembangkan sektor agrikultur modern secara mandiri dan produktif.', 'group' => 'vision'],
+            ['key' => 'mission_4_title',   'value' => 'Kemandirian Digital & Pangan',     'group' => 'vision'],
+            ['key' => 'mission_4_desc',    'value' => 'Membekali santri dengan kompetensi inovatif di bidang rekayasa perangkat lunak dan agrikultur modern untuk menjadi ahli mandiri dan produktif.', 'group' => 'vision'],
             ['key' => 'mission_5_title',   'value' => 'Daya Saing Prestasi',    'group' => 'vision'],
             ['key' => 'mission_5_desc',    'value' => 'Menumbuhkan jiwa kompetitif yang sehat demi mencapai prestasi unggul di kancah nasional maupun internasional.', 'group' => 'vision'],
 
@@ -58,7 +58,7 @@ class SiteSettingSeeder extends Seeder
 
             // ===================== SEO =====================
             ['key' => 'meta_title',        'value' => 'Pondok Pesantren Tahfidz Al-Falah | SMK Al-Falah Boarding School', 'group' => 'seo'],
-            ['key' => 'meta_description',  'value' => "Website resmi Pondok Pesantren Tahfidz Al-Falah dan SMK Al-Falah Boarding School. Pendidikan Tahfidz Al-Qur'an, Boarding School, dan Pertanian Modern.", 'group' => 'seo'],
+            ['key' => 'meta_description',  'value' => "Website resmi Pondok Pesantren Tahfidz Al-Falah dan SMK Al-Falah Boarding School. Pendidikan Tahfidz Al-Qur'an, Boarding School, Program Keahlian Informatika & Agribisnis Terpadu.", 'group' => 'seo'],
             ['key' => 'og_image',          'value' => '',  'group' => 'seo'],
             ['key' => 'google_analytics_id','value' => '', 'group' => 'seo'],
         ];
