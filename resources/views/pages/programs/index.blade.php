@@ -12,7 +12,7 @@
         <div class="text-center mb-16">
 
             <h1 class="text-4xl md:text-5xl font-black text-on-surface font-headline tracking-tight mb-4">
-                Program Pilihan <span class="text-primary">Terabaik</span>
+                Program Pilihan <span class="text-primary">Terbaik</span>
             </h1>
             <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">
                 Eksplorasi ekosistem pendidikan kami yang dirancang eksklusif untuk membentuk karakter insan Qur'ani berdaya saing global.
