@@ -17,20 +17,20 @@
     {{-- JSON-LD Structured Data --}}
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
+      "@@context": "https://schema.org",
+      "@@type": "EducationalOrganization",
       "name": "{{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}",
       "alternateName": ["PPT Al-Falah", "pptalfalah", "SMK Al-Falah Boarding School"],
       "url": "{{ url('/') }}",
       "logo": "{{ asset('assets/LOGO1.jpeg') }}",
       "contactPoint": {
-        "@type": "ContactPoint",
+        "@@type": "ContactPoint",
         "telephone": "{{ $settings['phone'] ?? '+62 815-1002-9919' }}",
         "contactType": "customer service",
         "email": "{{ $settings['email'] ?? 'ppt.alfalah29919@gmail.com' }}"
       },
       "address": {
-        "@type": "PostalAddress",
+        "@@type": "PostalAddress",
         "streetAddress": "Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol",
         "addressLocality": "Jonggol",
         "addressRegion": "Jawa Barat",
