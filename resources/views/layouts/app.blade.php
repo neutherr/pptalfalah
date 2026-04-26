@@ -314,69 +314,110 @@
 </main>
 
 {{-- ===== FOOTER ===== --}}
-<footer class="bg-emerald-900 dark:bg-emerald-950 text-white w-full">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 px-8 py-16 max-w-7xl mx-auto text-sm leading-relaxed">
+<footer class="bg-[#00220f] relative w-full pt-20 pb-8 border-t-4 border-amber-500 overflow-hidden mt-auto">
+    {{-- Background Pattern & Glow --}}
+    <div class="absolute inset-0 islamic-pattern-custom opacity-10 pointer-events-none"></div>
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-800/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        {{-- Kolom 1: Profil Singkat & Sosial Media --}}
-        <div class="md:col-span-4">
-            <div class="text-xl font-bold text-amber-500 mb-6 font-headline">
-                {{ $settings['site_name'] ?? 'Al-Falah Boarding School' }}
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+            
+            {{-- Brand & About --}}
+            <div class="lg:col-span-4">
+                <div class="bg-white p-3.5 rounded-2xl inline-block mb-6 shadow-xl border border-white/10 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                    <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-14 lg:h-16 w-auto object-contain">
+                </div>
+                <h4 class="text-xl font-headline font-bold text-white mb-3 tracking-tight">
+                    {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
+                </h4>
+                <p class="text-emerald-100/70 text-sm leading-relaxed mb-8 max-w-sm">
+                    {{ $settings['footer_description'] ?? 'Pesantren modern dengan sistem pendidikan terpadu, mendidik generasi qur\'ani, mandiri, dan berakhlak mulia.' }}
+                </p>
+                <div class="flex items-center gap-3">
+                    @if(!empty($settings['instagram_url']))
+                    <a class="w-10 h-10 rounded-xl bg-emerald-800/40 border border-emerald-700/50 flex items-center justify-center hover:bg-amber-500 hover:border-amber-400 hover:text-emerald-950 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-white"
+                       href="{{ $settings['instagram_url'] }}" target="_blank" aria-label="Instagram">
+                        <span class="material-symbols-outlined text-sm">photo_camera</span>
+                    </a>
+                    @endif
+                    @if(!empty($settings['facebook_url']))
+                    <a class="w-10 h-10 rounded-xl bg-emerald-800/40 border border-emerald-700/50 flex items-center justify-center hover:bg-amber-500 hover:border-amber-400 hover:text-emerald-950 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-white"
+                       href="{{ $settings['facebook_url'] }}" target="_blank" aria-label="Facebook">
+                        <span class="material-symbols-outlined text-sm">public</span>
+                    </a>
+                    @endif
+                    <a class="w-10 h-10 rounded-xl bg-emerald-800/40 border border-emerald-700/50 flex items-center justify-center hover:bg-amber-500 hover:border-amber-400 hover:text-emerald-950 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-white"
+                       href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}" target="_blank" aria-label="WhatsApp">
+                        <span class="material-symbols-outlined text-sm">chat</span>
+                    </a>
+                </div>
             </div>
-            <p class="text-emerald-100/80 mb-8 max-w-sm">
-                {{ $settings['footer_description'] ?? 'Pesantren modern dengan sistem pendidikan terpadu, mendidik generasi qurani, mandiri, dan berakhlak mulia.' }}
+
+            {{-- Quick Links --}}
+            <div class="lg:col-span-2 lg:col-start-6">
+                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                    Eksplorasi
+                </h5>
+                <ul class="space-y-3.5">
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('home') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Beranda</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('programs.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Program</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('fasilitas') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Fasilitas</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('gallery') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Galeri</a></li>
+                </ul>
+            </div>
+
+            {{-- Informasi --}}
+            <div class="lg:col-span-2">
+                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                    Informasi
+                </h5>
+                <ul class="space-y-3.5">
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('ppdb') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Info PPDB</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('articles.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Artikel</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('agendas.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Agenda</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('announcements.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Pengumuman</a></li>
+                </ul>
+            </div>
+
+            {{-- Kontak & Lokasi --}}
+            <div class="lg:col-span-3">
+                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                    Hubungi Kami
+                </h5>
+                <ul class="space-y-4 mb-6">
+                    <li class="flex items-start gap-3 text-emerald-100/70 text-sm">
+                        <div class="w-8 h-8 rounded-full bg-emerald-800/40 flex items-center justify-center shrink-0 border border-emerald-700/50">
+                            <span class="material-symbols-outlined text-amber-500 text-sm">location_on</span>
+                        </div>
+                        <span class="leading-relaxed pt-1.5">{{ $settings['address'] ?? 'Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol, Kec. Jonggol, Kab. Bogor, Jawa Barat' }}</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-emerald-100/70 text-sm">
+                        <div class="w-8 h-8 rounded-full bg-emerald-800/40 flex items-center justify-center shrink-0 border border-emerald-700/50">
+                            <span class="material-symbols-outlined text-amber-500 text-sm">call</span>
+                        </div>
+                        <span>{{ $settings['whatsapp_number'] ?? '0815-1002-9919' }}</span>
+                    </li>
+                </ul>
+                <div class="rounded-xl overflow-hidden shadow-lg border border-emerald-800/50 relative group">
+                    <div class="absolute inset-0 bg-emerald-950/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10"></div>
+                    <iframe src="https://maps.google.com/maps?q=Masjid+Nurul+Falah,+Jonggol+Utara&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"></iframe>
+                </div>
+            </div>
+        </div>
+
+        {{-- Copyright & Legal --}}
+        <div class="border-t border-emerald-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-emerald-100/50 text-xs text-center md:text-left">
+                &copy; {{ date('Y') }} <span class="font-bold text-emerald-100/70">{{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}</span>. Hak Cipta Dilindungi.
             </p>
-            <div class="flex gap-4">
-                @if(!empty($settings['instagram_url']))
-                <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all"
-                   href="{{ $settings['instagram_url'] }}" target="_blank" aria-label="Instagram">
-                    <span class="material-symbols-outlined text-white text-lg">photo_camera</span>
-                </a>
-                @endif
-                @if(!empty($settings['facebook_url']))
-                <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all"
-                   href="{{ $settings['facebook_url'] }}" target="_blank" aria-label="Facebook">
-                    <span class="material-symbols-outlined text-white text-lg">public</span>
-                </a>
-                @endif
+            <div class="flex flex-wrap justify-center gap-6 text-xs font-medium text-emerald-100/50">
+                <a href="#" class="hover:text-amber-400 transition-colors">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-amber-400 transition-colors">Syarat & Ketentuan</a>
             </div>
-        </div>
-
-        {{-- Kolom 2: Menus --}}
-        <div class="md:col-span-2">
-            <h5 class="text-white font-bold mb-6">Program Unggulan</h5>
-            <ul class="space-y-4">
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Tahfidz Al-Qur'an 30 Juz</a></li>
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Informatika & Agribisnis</a></li>
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('programs.index') }}">Pondok Pesantren</a></li>
-            </ul>
-        </div>
-
-        {{-- Kolom 3: Menus --}}
-        <div class="md:col-span-2">
-            <h5 class="text-white font-bold mb-6">Informasi</h5>
-            <ul class="space-y-4">
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('ppdb') }}">Pendaftaran (PPDB)</a></li>
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('agendas.index') }}">Kalender Akademik</a></li>
-                <li><a class="text-emerald-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ route('contact') }}">Hubungi Kami</a></li>
-            </ul>
-        </div>
-
-        {{-- Kolom 4: Alamat & Map --}}
-        <div class="md:col-span-4">
-            <h5 class="text-white font-bold mb-6">Lokasi Kami</h5>
-            <div class="flex items-start gap-3 text-emerald-100/80 mb-4">
-                <span class="material-symbols-outlined text-amber-500 shrink-0 mt-0.5">location_on</span>
-                <p>{{ $settings['address'] ?? 'Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol, Kec. Jonggol, Kab. Bogor, Jawa Barat' }}</p>
-            </div>
-            <iframe src="https://maps.google.com/maps?q=Masjid+Nurul+Falah,+Jonggol+Utara&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl shadow-lg border border-white/10 opacity-90 hover:opacity-100 transition-opacity mt-2"></iframe>
-        </div>
-    </div>
-
-    <div class="border-t border-white/10 px-8 py-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-emerald-100/60 text-xs">
-        <p>© {{ date('Y') }} {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }} & {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}</p>
-        <div class="flex gap-8 mt-4 md:mt-0">
-            <a class="hover:text-white" href="#">Kebijakan Privasi</a>
-            <a class="hover:text-white" href="#">Syarat & Ketentuan</a>
         </div>
     </div>
 </footer>
