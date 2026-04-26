@@ -105,11 +105,11 @@
                 </h2>
                 <div class="space-y-6 text-on-surface-variant text-lg leading-relaxed">
                     <p>
-                        Berawal dari kesadaran, idealisme, dan semangat untuk melahirkan generasi muslim yang mandiri dan tangguh, kami memadukan generasi Qur'ani dengan kemandirian ekologi. Di atas keyakinan bahwa ketahanan umat berakar pada ketahanan pangan dan pondasi tauhid yang kuat, maka di Jonggol Utara ini dibangun sebuah rintisan lembaga pendidikan terpadu: <strong>Pondok Pesantren Tahfidz Al-Falah</strong>.
+                        Berawal dari kesadaran, idealisme, dan semangat untuk melahirkan generasi muslim yang mandiri dan tangguh, kami memadukan generasi Qur'ani dengan kemandirian ekologi. Di atas keyakinan bahwa ketahanan umat berakar pada ketahanan pangan dan fondasi tauhid yang kuat, maka di Jonggol Utara ini dibangun sebuah rintisan lembaga pendidikan terpadu: <strong>Pondok Pesantren Tahfidz Al-Falah</strong>.
                     </p>
                     <p>
                         <strong>Kenapa Harus Memilih Al-Falah Boarding School?</strong><br>
-                        Pondok Pesantren Tahfidz Al-Falah, didirikan oleh para praktisi bisnis, hafidz Qur'an dan juga aktifis dakwah, sangat memahami betul tentang pilihan arah dan jenjang pendidikan putra Anda saat ini. Oleh karena itu, kami telah mempersiapkan dengan sangat teliti, detail, dan menyeluruh 4 pilar keunggulan pembelajaran kami, yaitu:
+                        Pondok Pesantren Tahfidz Al-Falah, didirikan oleh para praktisi bisnis, hafizh Qur'an dan juga aktivis dakwah, sangat memahami betul tentang pilihan arah dan jenjang pendidikan putra Anda saat ini. Oleh karena itu, kami telah mempersiapkan dengan sangat teliti, detail, dan menyeluruh 4 pilar keunggulan pembelajaran kami, yaitu:
                         <span class="block mt-3 font-semibold text-primary">
                             1. Tahfidz Al-Qur'an 30 Juz<br>
                             2. Pendidikan Boarding School Menyeluruh<br>

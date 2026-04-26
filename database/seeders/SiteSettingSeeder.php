@@ -45,7 +45,7 @@ class SiteSettingSeeder extends Seeder
 
             // ===================== PPDB STEPS =====================
             ['key' => 'ppdb_step_1_title', 'value' => 'Registrasi Online / Offline', 'group' => 'ppdb'],
-            ['key' => 'ppdb_step_1_desc',  'value' => 'Mengisi formulir pendaftaran dan melengkapi berkas administrasi (Akta, KK, Raport).', 'group' => 'ppdb'],
+            ['key' => 'ppdb_step_1_desc',  'value' => 'Mengisi formulir pendaftaran dan melengkapi berkas administrasi (Akta, KK, Rapor).', 'group' => 'ppdb'],
             ['key' => 'ppdb_step_2_title', 'value' => 'Tes Seleksi Akademik',   'group' => 'ppdb'],
             ['key' => 'ppdb_step_2_desc',  'value' => 'Pelaksanaan tes masuk sesuai jadwal gelombang yang dipilih.', 'group' => 'ppdb'],
             ['key' => 'ppdb_step_3_title', 'value' => 'Pengumuman & Daftar Ulang','group' => 'ppdb'],
