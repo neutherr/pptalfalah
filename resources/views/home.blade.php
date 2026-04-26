@@ -52,36 +52,36 @@
             </span>
             @endif
 
-            <h1 class="font-hero text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tighter mb-6 animate-on-scroll">
+            <h1 class="font-hero text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-[1.2] tracking-tighter mb-4 sm:mb-6 animate-on-scroll">
                 {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span>, <span class='text-secondary-fixed'>Informatika</span> & Agribisnis Terpadu" !!}
             </h1>
-            <p class="text-xl text-emerald-50/80 max-w-xl mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
+            <p class="text-base sm:text-lg lg:text-xl text-emerald-50/80 max-w-xl mb-8 sm:mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
                 {{ $settings['site_tagline'] ?? "SMK Al-Falah Boarding School" }}
             </p>
 
-            <div class="flex flex-wrap gap-4">
-                <a class="px-8 py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold uppercase text-sm tracking-widest flex items-center gap-2 hover:bg-primary transition-all shadow-xl"
+            <div class="flex flex-col sm:flex-row flex-wrap gap-4">
+                <a class="px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
                    href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
                    target="_blank"
                    id="click_whatsapp_home">
                     Daftar
-                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                    <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                 </a>
 
                 @if(!empty($settings['active_brochure_url']))
-                <a class="px-8 py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center gap-2"
+                <a class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center"
                    href="{{ $settings['active_brochure_url'] }}"
                    target="_blank"
                    id="click_download_brochure_home"
                    download>
-                    <span class="material-symbols-outlined text-lg">download</span>
+                    <span class="material-symbols-outlined text-base sm:text-lg">download</span>
                     Unduh Brosur PDF
                 </a>
                 @else
-                <button class="px-8 py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center gap-2"
+                <button class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center w-full sm:w-auto"
                         id="click_download_brochure_home"
                         onclick="alert('Brosur segera tersedia. Silakan hubungi admin via WhatsApp.')">
-                    <span class="material-symbols-outlined text-lg">download</span>
+                    <span class="material-symbols-outlined text-base sm:text-lg">download</span>
                     Unduh Brosur PDF
                 </button>
                 @endif
@@ -100,7 +100,7 @@
                     <span class="h-px w-10 bg-secondary/30"></span>
                     <span class="text-secondary font-bold tracking-[0.4em] uppercase text-xs">Who We Are</span>
                 </div>
-                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-6">
+                <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight mb-6">
                     Pioneer of Agri-Preneur & <br><span class="text-amber-500">Future Leaders</span>
                 </h2>
                 <div class="space-y-6 text-on-surface-variant text-lg leading-relaxed">
@@ -144,7 +144,7 @@
                 <span class="text-secondary font-bold tracking-[0.4em] uppercase text-[10px]">Visi</span>
                 <span class="h-px w-10 bg-secondary/30"></span>
             </div>
-            <h2 class="font-headline text-4xl lg:text-6xl font-black text-primary leading-tight tracking-tighter mb-6">
+            <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-primary leading-tight tracking-tighter mb-6">
                 {!! nl2br(e($settings['vision_headline'] ?? "Mencetak Generasi\nQur'ani, Mandiri,\ndan Berprestasi.")) !!}
             </h2>   
         </div>

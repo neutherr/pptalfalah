@@ -2,14 +2,14 @@
 
 ## 📋 Informasi Server
 
-| Info | Detail |
-|------|--------|
-| **Hosting** | Hostinger Shared Hosting |
-| **hPanel** | https://hpanel.hostinger.com/ |
-| **Domain** | pptalfalah.com |
-| **SSH User** | u818194417 |
-| **Server** | id-dci-web1786 |
-| **Directory** | `~/domains/pptalfalah.com/public_html` |
+| Info           | Detail                                 |
+| -------------- | -------------------------------------- |
+| **Hosting**    | Hostinger Shared Hosting               |
+| **hPanel**     | https://hpanel.hostinger.com/          |
+| **Domain**     | pptalfalah.com                         |
+| **SSH User**   | u818194417                             |
+| **Server**     | id-dci-web1786                         |
+| **Directory**  | `~/domains/pptalfalah.com/public_html` |
 | **Repository** | https://github.com/neutherr/pptalfalah |
 
 ---
@@ -44,6 +44,7 @@ git push origin main
 ```
 
 > **📝 Tips pesan commit yang baik:**
+>
 > - `feat: tambah halaman galeri`
 > - `fix: perbaiki bug upload foto`
 > - `update: perbarui konten hero section`
@@ -56,6 +57,7 @@ git push origin main
 
 ```bash
 ssh u818194417@pptalfalah.com
+ssh -p 65002 u818194417@46.202.138.100
 ```
 
 ### Via hPanel
@@ -152,6 +154,7 @@ git clone https://neutherr:TOKEN@github.com/neutherr/pptalfalah.git public_html
 ```
 
 ### Cara Buat PAT Baru:
+
 1. Login ke https://github.com
 2. **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
 3. Klik **Generate new token (classic)**
@@ -165,6 +168,7 @@ git clone https://neutherr:TOKEN@github.com/neutherr/pptalfalah.git public_html
 ## 🆘 Troubleshooting
 
 ### ❌ 403 Forbidden
+
 Website tidak bisa diakses. Pastikan `.htaccess` di root project ada:
 
 ```bash
@@ -172,6 +176,7 @@ cat ~/domains/pptalfalah.com/public_html/.htaccess
 ```
 
 Isinya harus:
+
 ```apache
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -180,6 +185,7 @@ Isinya harus:
 ```
 
 Jika tidak ada, buat dengan:
+
 ```bash
 cat > ~/domains/pptalfalah.com/public_html/.htaccess << 'EOF'
 <IfModule mod_rewrite.c>

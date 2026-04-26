@@ -140,20 +140,20 @@
     </script>
     @endif
 </head>
-<body class="bg-surface font-body text-on-background">
+<body class="bg-surface font-body text-on-background overflow-x-hidden">
 
 {{-- ===== TOP NAVIGATION ===== --}}
 <nav class="bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky z-[100]">
     <div class="flex justify-between items-center w-full px-6 lg:px-8 py-4 max-w-7xl mx-auto">
 
         {{-- Brand --}}
-        <a href="{{ route('home') }}" class="flex items-center gap-4">
-            <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-14 w-auto object-contain drop-shadow-md">
-            <div class="flex flex-col">
-                <span class="text-xs font-headline font-bold text-emerald-800/60 uppercase tracking-widest line-clamp-1">
+        <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink">
+            <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-10 lg:h-14 w-auto object-contain drop-shadow-md shrink-0">
+            <div class="flex flex-col min-w-0">
+                <span class="text-[9px] lg:text-xs font-headline font-bold text-emerald-800/60 uppercase tracking-widest truncate">
                     {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}
                 </span>
-                <span class="text-xl font-bold leading-tight text-emerald-900 dark:text-emerald-50 font-headline tracking-tight line-clamp-1">
+                <span class="text-sm lg:text-xl font-bold leading-tight text-emerald-900 dark:text-emerald-50 font-headline tracking-tight truncate">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
                 </span>
             </div>
@@ -232,11 +232,11 @@
         </div>
 
         {{-- CTA + Mobile Toggle --}}
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 shrink-0">
             <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
                target="_blank"
                id="click_whatsapp_nav"
-               class="bg-primary hover:bg-primary-container text-white px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-primary/20 hidden sm:flex items-center gap-2">
+               class="bg-primary hover:bg-primary-container text-white px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-primary/20 hidden lg:flex items-center gap-2">
                 <span class="material-symbols-outlined text-sm">chat</span> Hubungi Admin
             </a>
 
