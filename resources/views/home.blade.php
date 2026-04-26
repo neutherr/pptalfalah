@@ -44,7 +44,7 @@
     </div>
 
     {{-- Hero Content --}}
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 py-20 lg:py-32">
         <div class="max-w-3xl">
             @if($activePpdb)
             <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold uppercase tracking-[0.2em] mb-6">
@@ -60,7 +60,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-                <a class="px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
+                <a class="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
                    href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
                    target="_blank"
                    id="click_whatsapp_home">
@@ -91,7 +91,7 @@
 </section>
 
 {{-- ===== WHO WE ARE ===== --}}
-<section class="py-24 relative overflow-hidden bg-surface-container">
+<section class="py-12 lg:py-24 relative overflow-hidden bg-surface-container">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             {{-- Bagian Teks --}}
@@ -126,14 +126,14 @@
                 <div class="absolute -inset-4 bg-secondary/10 rounded-3xl transform -rotate-2 z-0"></div>
                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDcZsxG5SewyK8JZxLEfM1O5zIBC2vkdGlO4r-Zhn0mpCQDYXv9rGfnQVwqBTqC9wEVNRq2mk6hqd9EgOQLG1jiWa6yI9diYAiHK3HgQEnDAheVLSWlMDBT0pATmMTfuhDL6fV9VLfrt5k90rQI22z1QwkZsjwrbBQAEGGcJf0rWnNfRNXbYzr9GSp-1xGT4LltlBYkpmSyWk_ULyz9GNrvbTdMZgbWUyXmwQAd8rZhVLJPnb4CUUSGbtHATx53HBlgBBsSUj9Yuw" 
                      alt="Program Informatika dan Agribisnis Al-Falah" 
-                     class="relative z-10 w-full h-[500px] object-cover rounded-2xl shadow-xl">
+                     class="relative z-10 w-full h-[300px] lg:h-[500px] object-cover rounded-2xl shadow-xl">
             </div>
         </div>
     </div>
 </section>
 
 {{-- ===== VISI & MISI ===== --}}
-<section class="py-16 relative overflow-hidden bg-surface">
+<section class="py-12 lg:py-16 relative overflow-hidden bg-surface">
     <div class="absolute inset-0" style="background-image: url('{{ asset('assets/backgroundpattern.jpg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.15;"></div>
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
@@ -177,7 +177,7 @@
 </section>
 
 {{-- ===== PROGRAM UNGGULAN ===== --}}
-<section class="py-24 bg-surface-container-low">
+<section class="py-12 lg:py-24 bg-surface-container-low">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="font-headline text-3xl lg:text-4xl font-extrabold text-primary mb-4">Program Unggulan</h2>
@@ -221,11 +221,11 @@
 
 {{-- ===== PPDB SUMMARY ===== --}}
 @if($activePpdb)
-<section class="py-24 bg-surface overflow-hidden relative">
+<section class="py-12 lg:py-24 bg-surface overflow-hidden relative">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-5 gap-12 items-center">
             <div class="lg:col-span-2">
-                <h2 class="font-headline text-4xl font-extrabold text-primary mb-6">
+                <h2 class="font-headline text-3xl lg:text-4xl font-extrabold text-primary mb-6">
                     Penerimaan Santri Baru Tahun Ajaran {{ $activePpdb->academic_year }}
                 </h2>
                 <p class="text-on-surface-variant mb-8 leading-relaxed">
@@ -235,7 +235,7 @@
                 {{-- Gelombang Aktif --}}
                 @php $firstWave = $activePpdb->waves->first(); @endphp
                 @if($firstWave)
-                <div class="p-8 bg-primary rounded-3xl text-white shadow-2xl">
+                <div class="p-6 lg:p-8 bg-primary rounded-3xl text-white shadow-2xl">
                     <div class="flex items-center gap-4 mb-4">
                         <span class="material-symbols-outlined text-secondary-fixed text-4xl">event</span>
                         <div>
@@ -282,7 +282,7 @@
 @endif
 
 {{-- ===== BERITA TERKINI ===== --}}
-<section class="py-24 bg-white relative overflow-hidden">
+<section class="py-12 lg:py-24 bg-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16">
             <span class="text-secondary font-bold tracking-[0.2em] uppercase text-xs block mb-4">Informasi Terupdate</span>
@@ -348,7 +348,7 @@
 </section>
 
 {{-- ===== GALERI ===== --}}
-<section class="py-24 bg-surface-container-low overflow-hidden">
+<section class="py-12 lg:py-24 bg-surface-container-low overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <div class="text-center mb-16">
             <h2 class="font-headline text-3xl lg:text-4xl font-extrabold text-primary mb-4 tracking-tight">Galeri Kegiatan & Fasilitas</h2>
@@ -390,7 +390,7 @@
             <div x-ref="slider" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-6 pb-12">
                 @forelse($featuredGallery as $item)
                 <div class="min-w-full md:min-w-[70%] snap-center shrink-0">
-                    <div class="relative h-[500px] rounded-[2rem] overflow-hidden group/slide shadow-2xl">
+                    <div class="relative h-[350px] lg:h-[500px] rounded-[2rem] overflow-hidden group/slide shadow-2xl">
                         <img alt="{{ $item->title }}"
                              class="w-full h-full object-cover transition-transform duration-1000 group-hover/slide:scale-110"
                              src="{{ $item->image ? asset('storage/' . $item->image) : 'https://lh3.googleusercontent.com/aida-public/AB6AXuCdiKuaWCrTGvdN0rsNO4bYxT4Ioh3XWNHfBwY8qw6M-Zx4XI0jKN9VRGVAxK2GQ8CRzvNXNzDr6Zv9A7MP9pdEs8EE4vNaepc5RgiOwKUhjzAYnyr-8kZMMy96EP0ADeaHSTY0_Ux-WobhLatDmDClwHJg1QZ0sJBUjU0aWKBm6sXmD348k6b7JP22IPTnzBEIOngz4lY3ZoOnSA_6e9Hg9VyfphJG9HI-allm3VXuQtFsdFUos_1O3GVTmUxj-85JxC__RJXS8nA' }}"
@@ -414,7 +414,7 @@
                     ['label' => 'Akademik',      'title' => 'Ruang Belajar Kolaboratif',      'caption' => 'Fasilitas modern untuk proses belajar mengajar.'],
                 ] as $i => $slide)
                 <div class="min-w-full md:min-w-[70%] snap-center shrink-0">
-                    <div class="relative h-[500px] rounded-[2rem] overflow-hidden group/slide shadow-2xl">
+                    <div class="relative h-[350px] lg:h-[500px] rounded-[2rem] overflow-hidden group/slide shadow-2xl">
                         <img alt="{{ $slide['title'] }}" class="w-full h-full object-cover transition-transform duration-1000 group-hover/slide:scale-110"
                              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdiKuaWCrTGvdN0rsNO4bYxT4Ioh3XWNHfBwY8qw6M-Zx4XI0jKN9VRGVAxK2GQ8CRzvNXNzDr6Zv9A7MP9pdEs8EE4vNaepc5RgiOwKUhjzAYnyr-8kZMMy96EP0ADeaHSTY0_Ux-WobhLatDmDClwHJg1QZ0sJBUjU0aWKBm6sXmD348k6b7JP22IPTnzBEIOngz4lY3ZoOnSA_6e9Hg9VyfphJG9HI-allm3VXuQtFsdFUos_1O3GVTmUxj-85JxC__RJXS8nA"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent flex flex-col justify-end p-12">

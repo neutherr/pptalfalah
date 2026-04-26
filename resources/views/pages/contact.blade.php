@@ -3,7 +3,7 @@
 @section('meta_title', 'Hubungi Kami | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
 
 @section('content')
-<div class="pt-32 pb-24 bg-surface min-h-screen relative overflow-hidden">
+<div class="pt-24 lg:pt-32 pb-12 lg:pb-24 bg-surface min-h-screen relative overflow-hidden">
     
     {{-- Aksen Dekorasi Belakang --}}
     <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
@@ -17,7 +17,7 @@
                 <span class="material-symbols-outlined text-[16px]">contact_support</span>
                 Pusat Bantuan Layanan
             </div>
-            <h1 class="text-5xl md:text-6xl font-black text-on-surface font-headline tracking-tight leading-tight mb-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-on-surface font-headline tracking-tight leading-tight mb-4">
                 Ada Pertanyaan? <br class="hidden md:block" /> 
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400">Kami Siap Membantu.</span>
             </h1>
@@ -96,15 +96,15 @@
                             src="{{ $settings['maps_embed_url'] }}" 
                             width="100%" 
                             height="100%" 
-                            style="border:0; min-height: 500px;" 
+                            style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-[2rem] w-full h-full flex-grow z-10 transition-transform duration-700">
+                            class="rounded-[2rem] w-full h-full min-h-[300px] lg:min-h-[500px] flex-grow z-10 transition-transform duration-700">
                         </iframe>
                     @else
                         {{-- Placeholder Premium Jika Map URL Kosong --}}
-                        <div class="flex-grow flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-[2rem] h-[500px]">
+                        <div class="flex-grow flex flex-col items-center justify-center p-8 bg-surface-container-lowest rounded-[2rem] h-[300px] lg:h-[500px]">
                             <div class="w-24 h-24 bg-primary/5 rounded-full flex items-center justify-center mb-6">
                                 <span class="material-symbols-outlined text-5xl text-primary/40">map</span>
                             </div>

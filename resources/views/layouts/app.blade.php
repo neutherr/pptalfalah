@@ -171,7 +171,7 @@
 
 {{-- ===== TOP NAVIGATION ===== --}}
 <nav class="bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky z-[100]">
-    <div class="flex justify-between items-center w-full px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+    <div class="flex justify-between items-center w-full px-4 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
 
         {{-- Brand --}}
         <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink">
@@ -280,7 +280,7 @@
     {{-- Mobile Menu --}}
     <div x-data="{ open: false, openProfil: false, openInfo: false }" @toggle-menu.window="open = !open"
          x-show="open" x-transition
-         class="lg:hidden border-t border-outline-variant/20 bg-white/95 backdrop-blur-xl max-h-[80vh] overflow-y-auto pb-6 shadow-2xl">
+         class="lg:hidden absolute top-full left-0 w-full border-t border-outline-variant/20 bg-white/95 backdrop-blur-xl max-h-[80vh] overflow-y-auto pb-6 shadow-2xl">
         <div class="px-6 py-4 space-y-1">
             <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold {{ request()->routeIs('home') ? 'bg-primary text-white' : 'text-on-surface hover:bg-surface-container' }}">Beranda</a>
             
@@ -341,7 +341,7 @@
 </main>
 
 {{-- ===== FOOTER ===== --}}
-<footer class="bg-[#00220f] relative w-full pt-20 pb-8 border-t-4 border-amber-500 overflow-hidden mt-auto">
+<footer class="bg-[#00220f] relative w-full pt-12 lg:pt-20 pb-8 border-t-4 border-amber-500 overflow-hidden mt-auto">
     {{-- Background Pattern & Glow --}}
     <div class="absolute inset-0 islamic-pattern-custom opacity-10 pointer-events-none"></div>
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-800/20 rounded-full blur-3xl pointer-events-none"></div>
