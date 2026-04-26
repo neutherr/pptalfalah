@@ -11,7 +11,34 @@
     <meta property="og:description" content="@yield('meta_description', $settings['meta_description'] ?? '')"/>
     <meta property="og:image" content="@yield('og_image', $settings['og_image'] ?? '')"/>
     <meta property="og:type" content="website"/>
+    <meta name="keywords" content="Pondok Pesantren Tahfidz Al-Falah, PPT Al-Falah, pptalfalah, SMK Al-Falah Boarding School, Jonggol, Pesantren Tahfidz Bogor, Sekolah Boarding School, Pesantren Modern">
     <link rel="canonical" href="{{ url()->current() }}"/>
+
+    {{-- JSON-LD Structured Data --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "{{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}",
+      "alternateName": ["PPT Al-Falah", "pptalfalah", "SMK Al-Falah Boarding School"],
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('assets/LOGO1.jpeg') }}",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "{{ $settings['phone'] ?? '+62 815-1002-9919' }}",
+        "contactType": "customer service",
+        "email": "{{ $settings['email'] ?? 'ppt.alfalah29919@gmail.com' }}"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol",
+        "addressLocality": "Jonggol",
+        "addressRegion": "Jawa Barat",
+        "addressCountry": "ID"
+      },
+      "description": "{{ $settings['meta_description'] ?? 'Pondok Pesantren Tahfidz Al-Falah dan SMK Al-Falah Boarding School.' }}"
+    }
+    </script>
 
     {{-- Favicon --}}
     <link rel="icon" type="image/jpeg" href="{{ asset('assets/LOGO1.jpeg') }}" />
@@ -347,10 +374,6 @@
                         <span class="material-symbols-outlined text-sm">public</span>
                     </a>
                     @endif
-                    <a class="w-10 h-10 rounded-xl bg-emerald-800/40 border border-emerald-700/50 flex items-center justify-center hover:bg-amber-500 hover:border-amber-400 hover:text-emerald-950 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300 text-white"
-                       href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}" target="_blank" aria-label="WhatsApp">
-                        <span class="material-symbols-outlined text-sm">chat</span>
-                    </a>
                 </div>
             </div>
 
@@ -399,7 +422,7 @@
                         <div class="w-8 h-8 rounded-full bg-emerald-800/40 flex items-center justify-center shrink-0 border border-emerald-700/50">
                             <span class="material-symbols-outlined text-amber-500 text-sm">call</span>
                         </div>
-                        <span>{{ $settings['whatsapp_number'] ?? '0815-1002-9919' }}</span>
+                        <a href="https://wa.me/6281510029919" target="_blank" class="hover:text-amber-400 transition-colors">{{ $settings['whatsapp_number'] ?? '+6281510029919' }}</a>
                     </li>
                 </ul>
                 <div class="rounded-xl overflow-hidden shadow-lg border border-emerald-800/50 relative group">
