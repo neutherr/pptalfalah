@@ -46,12 +46,6 @@
     {{-- Hero Content --}}
     <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 py-20 lg:py-32">
         <div class="max-w-3xl">
-            @if($activePpdb)
-            <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold uppercase tracking-[0.2em] mb-6">
-                Penerimaan Santri Baru {{ $activePpdb->academic_year }}
-            </span>
-            @endif
-
             <h1 class="font-hero text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-[1.2] tracking-tighter mb-4 sm:mb-6 animate-on-scroll">
                 {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span>, <span class='text-secondary-fixed'>Informatika</span> & Agribisnis Terpadu" !!}
             </h1>
@@ -162,11 +156,11 @@
                 @foreach($missions as $mission)
                 <div class="group flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 pb-8 border-b border-outline-variant/10 last:border-0">
                     <div class="shrink-0 flex flex-col items-center">
-                        <div class="text-secondary/20 font-headline font-black text-4xl transition-colors group-hover:text-secondary/40">{{ $mission['number'] }}</div>
+                        <div class="text-secondary/20 font-body font-black text-4xl transition-colors group-hover:text-secondary/40">{{ $mission['number'] }}</div>
                         <div class="w-1 h-6 bg-secondary/10 rounded-full group-hover:bg-secondary/30 transition-all"></div>
                     </div>
                     <div class="text-center md:text-left">
-                        <h4 class="font-headline text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">{{ $mission['title'] }}</h4>
+                        <h4 class="font-body text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">{{ $mission['title'] }}</h4>
                         <p class="text-on-surface-variant text-base leading-relaxed">{{ $mission['desc'] }}</p>
                     </div>
                 </div>
@@ -194,7 +188,7 @@
                     <div class="absolute inset-0 bg-primary/20"></div>
                 </div>
                 <div class="p-10 pt-8 flex-grow flex flex-col">
-                    <h3 class="font-headline text-2xl font-bold text-primary mb-4 group-hover:text-primary-dark transition-colors">{{ $program->title }}</h3>
+                    <h3 class="font-body text-2xl font-bold text-primary mb-4 group-hover:text-primary-dark transition-colors">{{ $program->title }}</h3>
                     <p class="text-on-surface-variant leading-relaxed mb-6 flex-grow">{{ $program->description }}</p>
                     @if($program->bullet_points)
                     <ul class="space-y-3 text-sm font-semibold text-primary/80 mb-6">
@@ -269,7 +263,7 @@
                         <span class="text-lg font-bold text-primary group-hover:text-white">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                     </div>
                     <div>
-                        <h4 class="font-headline text-xl font-bold text-primary">{{ $step['title'] }}</h4>
+                        <h4 class="font-body text-xl font-bold text-primary">{{ $step['title'] }}</h4>
                         <p class="text-on-surface-variant">{{ $step['desc'] }}</p>
                     </div>
                 </div>
@@ -312,7 +306,7 @@
                         <span class="w-1 h-1 bg-outline rounded-full"></span>
                         <span>{{ $article->author?->name ?? 'Admin' }}</span>
                     </div>
-                    <h3 class="font-headline text-xl font-bold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors">
+                    <h3 class="font-body text-xl font-bold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors">
                         {{ $article->title }}
                     </h3>
                     <p class="text-on-surface-variant text-sm leading-relaxed mb-6 line-clamp-3">

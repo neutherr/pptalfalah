@@ -46,7 +46,7 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/LOGO1.jpeg') }}" />
 
     {{-- Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
     {{-- Tailwind CDN --}}
@@ -112,10 +112,10 @@
                         "full": "0.75rem"
                     },
                     fontFamily: {
-                        "headline": ["Plus Jakarta Sans"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"],
-                        "hero": ["Playfair Display", "serif"]
+                        "headline": ["Cormorant Garamond", "serif"],
+                        "body": ["Montserrat", "sans-serif"],
+                        "label": ["Montserrat", "sans-serif"],
+                        "hero": ["Cormorant Garamond", "serif"]
                     }
                 },
             },
@@ -177,17 +177,17 @@
         <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink">
             <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-10 lg:h-14 w-auto object-contain drop-shadow-md shrink-0">
             <div class="flex flex-col min-w-0">
-                <span class="text-[9px] lg:text-xs font-headline font-bold text-emerald-800/60 uppercase tracking-widest truncate">
+                <span class="text-[9px] lg:text-xs font-body font-bold text-emerald-800/60 uppercase tracking-widest truncate">
                     {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}
                 </span>
-                <span class="text-sm lg:text-xl font-bold leading-tight text-emerald-900 dark:text-emerald-50 font-headline tracking-tight truncate">
+                <span class="text-sm lg:text-xl font-bold leading-tight text-emerald-900 dark:text-emerald-50 font-body tracking-tight truncate">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
                 </span>
             </div>
         </a>
 
         {{-- Desktop Nav --}}
-        <div class="hidden lg:flex items-center space-x-8 tracking-tight text-sm font-semibold font-headline">
+        <div class="hidden lg:flex items-center space-x-8 tracking-tight text-sm font-semibold font-body">
             <a href="{{ route('home') }}"
                class="{{ request()->routeIs('home') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300' }}">
                 Beranda
@@ -355,7 +355,7 @@
                 <div class="bg-white p-3.5 rounded-2xl inline-block mb-6 shadow-xl border border-white/10 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
                     <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-14 lg:h-16 w-auto object-contain">
                 </div>
-                <h4 class="text-xl font-headline font-bold text-white mb-3 tracking-tight">
+                <h4 class="text-xl font-body font-bold text-white mb-3 tracking-tight">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
                 </h4>
                 <p class="text-emerald-100/70 text-sm leading-relaxed mb-8 max-w-sm">
@@ -379,7 +379,7 @@
 
             {{-- Quick Links --}}
             <div class="lg:col-span-2 lg:col-start-6">
-                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Eksplorasi
                 </h5>
@@ -393,7 +393,7 @@
 
             {{-- Informasi --}}
             <div class="lg:col-span-2">
-                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Informasi
                 </h5>
@@ -407,7 +407,7 @@
 
             {{-- Kontak & Lokasi --}}
             <div class="lg:col-span-3">
-                <h5 class="text-white font-headline font-bold mb-6 flex items-center gap-2">
+                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Hubungi Kami
                 </h5>
