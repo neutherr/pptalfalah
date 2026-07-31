@@ -1,7 +1,32 @@
 @extends('layouts.app')
 
-@section('meta_title', ($page->meta_title ?? $page->title) . ' | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
-@section('meta_description', $page->meta_description ?? '')
+@php
+    $siteName = $settings['site_name'] ?? 'Al-Falah Boarding School';
+    $pageDescription = $page->meta_description ?: \Illuminate\Support\Str::limit(strip_tags($page->content ?? ''), 160);
+    $pageImage = $page->og_image
+        ? ((str_starts_with($page->og_image, 'http://') || str_starts_with($page->og_image, 'https://'))
+            ? $page->og_image
+            : asset('storage/'.ltrim($page->og_image, '/')))
+        : asset('assets/LOGO1.jpeg');
+    $pageUrl = $page->slug === 'profil' ? route('profil') : route('page.show', $page->slug);
+    $pageBreadcrumb = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => $page->title, 'item' => $pageUrl],
+        ],
+    ];
+@endphp
+
+@section('meta_title', ($page->meta_title ?: $page->title).' | '.$siteName)
+@section('meta_description', $pageDescription)
+@section('og_image', $pageImage)
+@section('canonical', $pageUrl)
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($pageBreadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+@endpush
 
 @section('content')
 <div class="pt-24 lg:pt-32 pb-12 lg:pb-24 bg-surface min-h-screen">

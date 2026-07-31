@@ -1,5 +1,31 @@
 @extends('layouts.app')
 
+@php
+    $agendaDescription = $agenda->description ?: 'Agenda kegiatan PPT Al-Falah di Jonggol, Bogor.';
+    $agendaImage = $agenda->image
+        ? ((str_starts_with($agenda->image, 'http://') || str_starts_with($agenda->image, 'https://'))
+            ? $agenda->image
+            : asset('storage/'.ltrim($agenda->image, '/')))
+        : asset('assets/LOGO1.jpeg');
+    $agendaBreadcrumb = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Agenda', 'item' => route('agendas.index')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $agenda->title, 'item' => route('agendas.show', $agenda->slug)],
+        ],
+    ];
+@endphp
+
+@section('meta_title', $agenda->title.' | Agenda PPT Al-Falah')
+@section('meta_description', $agendaDescription)
+@section('og_image', $agendaImage)
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($agendaBreadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+@endpush
+
 @section('content')
 {{-- HEADER --}}
 <div class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-surface">

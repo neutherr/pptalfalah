@@ -1,5 +1,25 @@
 @extends('layouts.app')
 
+@php
+    $announcementDescription = \Illuminate\Support\Str::limit(strip_tags($announcement->content), 160);
+    $announcementBreadcrumb = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Pengumuman', 'item' => route('announcements.index')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $announcement->title, 'item' => route('announcements.show', $announcement->slug)],
+        ],
+    ];
+@endphp
+
+@section('meta_title', $announcement->title.' | PPT Al-Falah')
+@section('meta_description', $announcementDescription)
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($announcementBreadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+@endpush
+
 @section('content')
 {{-- HEADER --}}
 <div class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-surface">

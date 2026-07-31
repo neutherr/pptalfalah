@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', 'Galeri Kegiatan PPT Al-Falah Jonggol')
+@section('meta_description', 'Galeri kegiatan santri, pembelajaran tahfidz, praktik pertanian, teknologi informasi, dan fasilitas PPT Al-Falah di Jonggol, Bogor.')
+
 @section('content')
 <div x-data="{ lightboxOpen: false, lightboxSrc: '', lightboxTitle: '' }" class="pt-32 pb-24 bg-surface min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

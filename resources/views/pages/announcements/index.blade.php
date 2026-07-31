@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', 'Pengumuman PPT Al-Falah Jonggol, Bogor')
+@section('meta_description', 'Pengumuman resmi mengenai PPDB, kegiatan santri, akademik, dan informasi terbaru PPT Al-Falah Jonggol, Bogor.')
+
 @section('content')
 <div class="pt-32 pb-20 bg-surface">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

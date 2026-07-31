@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Hubungi Kami | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
+@section('meta_title', 'Kontak PPT Al-Falah Jonggol, Bogor')
+@section('meta_description', 'Alamat, WhatsApp, email, dan petunjuk lokasi PPT Al-Falah, SMK Pertanian dan IT berbasis Pesantren Tahfidz di Jonggol, Bogor.')
 
 @section('content')
 <div class="pt-24 lg:pt-32 pb-12 lg:pb-24 bg-surface min-h-screen relative overflow-hidden">
@@ -22,7 +23,7 @@
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400">Kami Siap Membantu.</span>
             </h1>
             <p class="text-on-surface-variant text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-                Jangan ragu untuk menghubungi kami melalui media komunikasi yang tersedia atau datang langsung ke lokasi pesantren untuk mendapatkan informasi secara lebih rinci.
+                Kampus PPT Al-Falah di Jonggol, Bogor siap membantu informasi PPDB, program Tahfidz, Pertanian, IT, kunjungan, dan konsultasi pendidikan.
             </p>
         </div>
 

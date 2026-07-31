@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', 'PPDB SMK Pesantren Tahfidz Jonggol | PPT Al-Falah')
+@section('meta_description', 'Informasi PPDB PPT Al-Falah, SMK Pertanian dan IT berbasis Pesantren Tahfidz di Jonggol, Bogor: jadwal, syarat, biaya, dan konsultasi pendaftaran.')
+
 @section('content')
 <div class="pt-32 pb-24 bg-surface min-h-screen relative overflow-hidden">
     {{-- Abstract background blurs --}}
@@ -22,7 +25,7 @@
             </h1>
             
             <p class="text-on-surface-variant text-lg md:text-xl mb-10 leading-relaxed">
-                {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }} mengundang putra-putri terbaik untuk dididik menjadi generasi tangguh, mandiri, dan berakhlakul karimah.
+                Pendaftaran SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor. {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }} mendidik generasi tangguh, mandiri, dan berakhlakul karimah.
             </p>
             
             <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-4 justify-center">

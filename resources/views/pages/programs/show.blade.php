@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
-@section('meta_title', ($program->title) . ' | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
+@php
+    $siteName = $settings['site_name'] ?? 'Al-Falah Boarding School';
+    $programImage = $program->image
+        ? ((str_starts_with($program->image, 'http://') || str_starts_with($program->image, 'https://'))
+            ? $program->image
+            : asset('storage/'.ltrim($program->image, '/')))
+        : asset('assets/LOGO1.jpeg');
+    $programBreadcrumb = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Program', 'item' => route('programs.index')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $program->title, 'item' => route('programs.show', $program->slug)],
+        ],
+    ];
+@endphp
+
+@section('meta_title', $program->title.' | '.$siteName)
+@section('meta_description', $program->description)
+@section('og_image', $programImage)
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($programBreadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+@endpush
 
 @section('content')
 <div class="pt-24 pb-24 bg-surface min-h-screen relative overflow-hidden">

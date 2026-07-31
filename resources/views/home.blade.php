@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_title', ($settings['meta_title'] ?? 'Al-Falah Boarding School') . ' | Beranda')
+@section('meta_title', 'SMK Pertanian & IT Pesantren Tahfidz Jonggol | Al-Falah')
+@section('meta_description', 'SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor yang memadukan pendidikan Qurani, agribisnis modern, dan teknologi informasi.')
 
 @section('content')
 
@@ -50,7 +51,8 @@
                 {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span>, <span class='text-secondary-fixed'>Informatika</span> & Agribisnis Terpadu" !!}
             </h1>
             <p class="text-base sm:text-lg lg:text-xl text-emerald-50/80 max-w-xl mb-8 sm:mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
-                {{ $settings['site_tagline'] ?? "SMK Al-Falah Boarding School" }}
+                {{ $settings['site_tagline'] ?? 'SMK Al-Falah Boarding School' }}
+                <span class="block mt-2">SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor.</span>
             </p>
 
             <div class="flex flex-col sm:flex-row flex-wrap gap-4">

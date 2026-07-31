@@ -5,122 +5,72 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
     {{-- Dynamic SEO --}}
-    <title>@yield('meta_title', $settings['meta_title'] ?? config('app.name'))</title>
-    <meta name="description" content="@yield('meta_description', $settings['meta_description'] ?? '')"/>
-    <meta property="og:title" content="@yield('meta_title', $settings['meta_title'] ?? config('app.name'))"/>
-    <meta property="og:description" content="@yield('meta_description', $settings['meta_description'] ?? '')"/>
-    <meta property="og:image" content="@yield('og_image', $settings['og_image'] ?? '')"/>
-    <meta property="og:type" content="website"/>
-    <meta name="keywords" content="Pondok Pesantren Tahfidz Al-Falah, PPT Al-Falah, pptalfalah, SMK Al-Falah Boarding School, Jonggol, Pesantren Tahfidz Bogor, Sekolah Boarding School, Pesantren Modern">
-    <link rel="canonical" href="{{ url()->current() }}"/>
+    @php
+        $defaultDescription = 'SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor untuk membentuk generasi Qurani yang mandiri dan siap berkarya.';
+        $sectionValue = fn (string $name, string $default): string => html_entity_decode(
+            trim($__env->yieldContent($name, $default)),
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8',
+        );
+        $seoTitle = $sectionValue('meta_title', $settings['meta_title'] ?? config('app.name'));
+        $seoDescription = $sectionValue('meta_description', $settings['meta_description'] ?? $defaultDescription);
+        $seoImage = $sectionValue('og_image', $settings['og_image'] ?? '') ?: asset('assets/LOGO1.jpeg');
+        $seoType = $sectionValue('og_type', 'website');
+        $seoRobots = $sectionValue('robots', 'index,follow');
+        $defaultCanonical = rtrim(request()->fullUrlWithoutQuery([
+            'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid',
+        ]), '/');
+        $seoCanonical = trim($__env->yieldContent('canonical', $defaultCanonical));
+        $siteName = $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah';
+        $organizationSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => ['EducationalOrganization', 'School'],
+            'name' => $siteName,
+            'alternateName' => ['PPT Al-Falah', 'pptalfalah', 'SMK Al-Falah Boarding School'],
+            'url' => url('/'),
+            'logo' => asset('assets/LOGO1.jpeg'),
+            'description' => $seoDescription,
+            'telephone' => $settings['phone'] ?? '+62 815-1002-9919',
+            'email' => $settings['email'] ?? 'ppt.alfalah29919@gmail.com',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => 'Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol',
+                'addressLocality' => 'Jonggol',
+                'addressRegion' => 'Jawa Barat',
+                'addressCountry' => 'ID',
+            ],
+        ];
+        $jsonFlags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT;
+    @endphp
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}"/>
+    <meta name="robots" content="{{ $seoRobots }}"/>
+    <meta property="og:title" content="{{ $seoTitle }}"/>
+    <meta property="og:description" content="{{ $seoDescription }}"/>
+    <meta property="og:image" content="{{ $seoImage }}"/>
+    <meta property="og:type" content="{{ $seoType }}"/>
+    <meta property="og:url" content="{{ $seoCanonical }}"/>
+    <meta property="og:site_name" content="{{ $siteName }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ $seoTitle }}"/>
+    <meta name="twitter:description" content="{{ $seoDescription }}"/>
+    <meta name="twitter:image" content="{{ $seoImage }}"/>
+    <link rel="canonical" href="{{ $seoCanonical }}"/>
 
-    {{-- JSON-LD Structured Data --}}
-    <script type="application/ld+json">
-    {
-      "@@context": "https://schema.org",
-      "@@type": "EducationalOrganization",
-      "name": "{{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}",
-      "alternateName": ["PPT Al-Falah", "pptalfalah", "SMK Al-Falah Boarding School"],
-      "url": "{{ url('/') }}",
-      "logo": "{{ asset('assets/LOGO1.jpeg') }}",
-      "contactPoint": {
-        "@@type": "ContactPoint",
-        "telephone": "{{ $settings['phone'] ?? '+62 815-1002-9919' }}",
-        "contactType": "customer service",
-        "email": "{{ $settings['email'] ?? 'ppt.alfalah29919@gmail.com' }}"
-      },
-      "address": {
-        "@@type": "PostalAddress",
-        "streetAddress": "Jl. Irigasi Kp. Galang RT.02 RW.05, Desa Jonggol",
-        "addressLocality": "Jonggol",
-        "addressRegion": "Jawa Barat",
-        "addressCountry": "ID"
-      },
-      "description": "{{ $settings['meta_description'] ?? 'Pondok Pesantren Tahfidz Al-Falah dan SMK Al-Falah Boarding School.' }}"
-    }
-    </script>
+    <script type="application/ld+json">{!! json_encode($organizationSchema, $jsonFlags) !!}</script>
+    @stack('structured_data')
 
     {{-- Favicon --}}
     <link rel="icon" type="image/jpeg" href="{{ asset('assets/LOGO1.jpeg') }}" />
     <link rel="shortcut icon" type="image/jpeg" href="{{ asset('assets/LOGO1.jpeg') }}" />
     <link rel="apple-touch-icon" href="{{ asset('assets/LOGO1.jpeg') }}" />
 
-    {{-- Fonts --}}
+    {{-- Fonts and compiled styles --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-
-    {{-- Tailwind CDN --}}
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#002c13",
-                        "outline-variant": "#c0c9be",
-                        "on-primary-fixed": "#00210d",
-                        "tertiary-fixed-dim": "#88d982",
-                        "secondary": "#785900",
-                        "on-error-container": "#93000a",
-                        "primary-container": "#014421",
-                        "surface-tint": "#306a43",
-                        "on-secondary-container": "#6c5000",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#edeeed",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-highest": "#e1e3e2",
-                        "tertiary-container": "#00450d",
-                        "surface-dim": "#d9dad9",
-                        "outline": "#717970",
-                        "on-primary-container": "#76b284",
-                        "surface-container-high": "#e7e8e7",
-                        "on-surface-variant": "#404941",
-                        "on-error": "#ffffff",
-                        "error": "#ba1a1a",
-                        "on-tertiary": "#ffffff",
-                        "surface-bright": "#f9f9f8",
-                        "error-container": "#ffdad6",
-                        "on-tertiary-fixed": "#002204",
-                        "primary-fixed-dim": "#97d5a5",
-                        "inverse-primary": "#97d5a5",
-                        "on-tertiary-container": "#66b664",
-                        "on-background": "#191c1c",
-                        "surface-container-low": "#f3f4f3",
-                        "tertiary-fixed": "#a3f69c",
-                        "inverse-on-surface": "#f0f1f0",
-                        "secondary-fixed-dim": "#fabd00",
-                        "background": "#f9f9f8",
-                        "on-secondary": "#ffffff",
-                        "on-secondary-fixed-variant": "#5b4300",
-                        "surface-variant": "#e1e3e2",
-                        "inverse-surface": "#2e3131",
-                        "secondary-fixed": "#ffdf9e",
-                        "tertiary": "#002c06",
-                        "on-tertiary-fixed-variant": "#005312",
-                        "primary-fixed": "#b2f1bf",
-                        "surface": "#f9f9f8",
-                        "secondary-container": "#fdc003",
-                        "on-secondary-fixed": "#261a00",
-                        "on-surface": "#191c1c",
-                        "on-primary-fixed-variant": "#14512d"
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    fontFamily: {
-                        "headline": ["Cormorant Garamond", "serif"],
-                        "body": ["Montserrat", "sans-serif"],
-                        "label": ["Montserrat", "sans-serif"],
-                        "hero": ["Cormorant Garamond", "serif"]
-                    }
-                },
-            },
-        }
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         .material-symbols-outlined {
@@ -388,6 +338,7 @@
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('programs.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Program</a></li>
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('fasilitas') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Fasilitas</a></li>
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('gallery') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Galeri</a></li>
+                    <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('contact') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Kontak</a></li>
                 </ul>
             </div>
 

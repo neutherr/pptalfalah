@@ -1,5 +1,59 @@
 @extends('layouts.app')
 
+@php
+    $siteName = $settings['site_name'] ?? 'Al-Falah Boarding School';
+    $articleDescription = $article->meta_description ?: ($article->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($article->content), 160));
+    $articleImagePath = $article->og_image ?: $article->featured_image;
+    $articleImage = $articleImagePath
+        ? ((str_starts_with($articleImagePath, 'http://') || str_starts_with($articleImagePath, 'https://'))
+            ? $articleImagePath
+            : asset('storage/'.ltrim($articleImagePath, '/')))
+        : asset('assets/LOGO1.jpeg');
+    $articleStructuredData = [
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'Article',
+                'headline' => $article->title,
+                'description' => $articleDescription,
+                'image' => [$articleImage],
+                'datePublished' => $article->published_at?->toAtomString(),
+                'dateModified' => $article->updated_at?->toAtomString(),
+                'author' => [
+                    '@type' => 'Person',
+                    'name' => $article->author?->name ?? 'Admin PPT Al-Falah',
+                ],
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => $siteName,
+                    'logo' => [
+                        '@type' => 'ImageObject',
+                        'url' => asset('assets/LOGO1.jpeg'),
+                    ],
+                ],
+                'mainEntityOfPage' => route('articles.show', $article->slug),
+            ],
+            [
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'Berita', 'item' => route('articles.index')],
+                    ['@type' => 'ListItem', 'position' => 3, 'name' => $article->title, 'item' => route('articles.show', $article->slug)],
+                ],
+            ],
+        ],
+    ];
+@endphp
+
+@section('meta_title', $article->meta_title ?: $article->title.' | '.$siteName)
+@section('meta_description', $articleDescription)
+@section('og_image', $articleImage)
+@section('og_type', 'article')
+
+@push('structured_data')
+<script type="application/ld+json">{!! json_encode($articleStructuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
+@endpush
+
 @section('content')
 {{-- ARTICLE HEADER --}}
 <div class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-surface">

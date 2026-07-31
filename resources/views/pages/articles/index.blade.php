@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta_title', 'Berita & Artikel PPT Al-Falah | Jonggol, Bogor')
+@section('meta_description', 'Berita kegiatan, prestasi santri, pendidikan tahfidz, pertanian modern, dan teknologi informasi dari PPT Al-Falah Jonggol, Bogor.')
+@if(request()->filled('search') || request()->filled('category'))
+    @section('robots', 'noindex,follow')
+    @section('canonical', route('articles.index'))
+@endif
+
 @section('content')
 <div class="pt-32 pb-20 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Fasilitas | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
+@section('meta_title', 'Fasilitas Pesantren & SMK Boarding School Jonggol | Al-Falah')
+@section('meta_description', 'Lihat fasilitas pendidikan, asrama, ibadah, pertanian, dan teknologi yang mendukung santri PPT Al-Falah di Jonggol, Bogor.')
 
 @push('styles')
 <style>
@@ -57,7 +58,7 @@
                 Fasilitas <span class="text-primary">Unggulan</span>
             </h1>
             <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">
-                Lingkungan asri dan infrastruktur modern berpadu mendukung pertumbuhan inteltual, fisik, dan spiritual santri secara maksimal.
+                Fasilitas pendidikan, asrama, ibadah, pertanian, dan teknologi di Jonggol, Bogor mendukung pertumbuhan intelektual, fisik, dan spiritual santri.
             </p>
         </div>
 

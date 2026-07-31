@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Program Unggulan | ' . ($settings['site_name'] ?? 'Al-Falah Boarding School'))
+@section('meta_title', 'Program Tahfidz, Pertanian & IT | PPT Al-Falah Jonggol')
+@section('meta_description', 'Program unggulan PPT Al-Falah memadukan Tahfidz Al-Qur’an, pertanian modern, dan teknologi informasi dalam pendidikan boarding school di Jonggol, Bogor.')
 
 @section('content')
 <div class="pt-32 pb-24 bg-surface min-h-screen relative overflow-hidden">
@@ -15,7 +16,7 @@
                 Program Pilihan <span class="text-primary">Terbaik</span>
             </h1>
             <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">
-                Eksplorasi ekosistem pendidikan kami yang dirancang eksklusif untuk membentuk karakter insan Qur'ani berdaya saing global.
+                Tahfidz Al-Qur’an, pertanian modern, dan teknologi informasi dipadukan untuk membentuk santri Qurani yang mandiri dan siap berkarya.
             </p>
         </div>
 
