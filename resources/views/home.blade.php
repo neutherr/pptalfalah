@@ -179,7 +179,7 @@
             <h2 class="font-headline text-3xl lg:text-4xl font-extrabold text-primary mb-4">Program Unggulan</h2>
             <div class="w-24 h-1.5 bg-secondary mx-auto rounded-full"></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             @forelse($programs as $program)
             <a href="{{ $program->slug ? route('programs.show', $program->slug) : '#' }}" class="bg-surface-container-lowest rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 group overflow-hidden flex flex-col hover:-translate-y-2">
                 <div class="h-48 overflow-hidden relative">
