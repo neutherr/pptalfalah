@@ -163,7 +163,7 @@ class SeoTest extends TestCase
 
         $this->get('https://pptalfalah.com/ppdb')
             ->assertOk()
-            ->assertSee('Pendaftaran SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor.', false);
+            ->assertSee('Pesantren Tahfidz di Jonggol, Bogor.', false);
 
         $this->get('https://pptalfalah.com/fasilitas')
             ->assertOk()

@@ -34,10 +34,6 @@
         
         {{-- Elegant Inline Header --}}
         <div class="mb-12 border-b border-outline-variant/30 pb-10 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary text-sm font-bold rounded-full mb-6">
-                <span class="material-symbols-outlined text-[16px]">info</span>
-                Informasi Resmi
-            </div>
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-on-surface font-headline tracking-tight leading-tight mb-4">
                 {{ $page->title }}
             </h1>
