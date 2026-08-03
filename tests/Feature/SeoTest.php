@@ -274,6 +274,23 @@ class SeoTest extends TestCase
         $this->assertStringContainsString('Sitemap: https://pptalfalah.com/sitemap.xml', $robots);
     }
 
+    public function test_homepage_navigation_is_transparent_until_scrolled(): void
+    {
+        $this->get('https://pptalfalah.com/')
+            ->assertOk()
+            ->assertSee('data-home-navbar', false)
+            ->assertSee('x-data="{ scrolled: window.scrollY > 24 }"', false)
+            ->assertSee('@scroll.window="scrolled = window.scrollY > 24"', false)
+            ->assertSee(':class="{ \'bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15\': scrolled }"', false)
+            ->assertSee('fixed top-0', false)
+            ->assertSee('text-white/80 hover:text-white', false);
+
+        $this->get('https://pptalfalah.com/program')
+            ->assertOk()
+            ->assertDontSee('data-home-navbar', false)
+            ->assertSee('bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky', false);
+    }
+
     public function test_article_search_is_not_indexed_and_uses_clean_canonical(): void
     {
         $response = $this->get('https://pptalfalah.com/berita?search=tahfidz');

@@ -120,17 +120,28 @@
 <body class="bg-surface font-body text-on-background overflow-x-hidden">
 
 {{-- ===== TOP NAVIGATION ===== --}}
-<nav class="bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky z-[100]">
+@php($isHomepage = request()->routeIs('home'))
+<nav
+    @if($isHomepage)
+        data-home-navbar
+        x-data="{ scrolled: window.scrollY > 24 }"
+        @scroll.window="scrolled = window.scrollY > 24"
+        :class="{ 'bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15': scrolled }"
+        class="fixed top-0 left-0 right-0 z-[100] transition-[background-color,box-shadow,backdrop-filter] duration-300"
+    @else
+        class="bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky z-[100]"
+    @endif
+>
     <div class="flex justify-between items-center w-full px-4 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
 
         {{-- Brand --}}
         <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink">
             <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-10 lg:h-14 w-auto object-contain drop-shadow-md shrink-0">
             <div class="flex flex-col min-w-0">
-                <span class="text-[9px] lg:text-xs font-body font-bold text-emerald-800/60 uppercase tracking-widest truncate">
+                <span class="text-[9px] lg:text-xs font-body font-bold {{ $isHomepage ? 'text-white/70' : 'text-emerald-800/60' }} uppercase tracking-widest truncate">
                     {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}
                 </span>
-                <span class="text-sm lg:text-xl font-bold leading-tight text-emerald-900 dark:text-emerald-50 font-body tracking-tight truncate">
+                <span class="text-sm lg:text-xl font-bold leading-tight {{ $isHomepage ? 'text-white' : 'text-emerald-900 dark:text-emerald-50' }} font-body tracking-tight truncate">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
                 </span>
             </div>
@@ -139,14 +150,14 @@
         {{-- Desktop Nav --}}
         <div class="hidden lg:flex items-center space-x-8 tracking-tight text-sm font-semibold font-body">
             <a href="{{ route('home') }}"
-               class="{{ request()->routeIs('home') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300' }}">
+               class="{{ $isHomepage ? 'text-white border-b-2 border-amber-400 pb-1' : 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' }}">
                 Beranda
             </a>
 
             {{-- Profil Dropdown --}}
             <div class="relative" x-data="{ open: false }" @click.outside="open = false" @mouseenter="open = true" @mouseleave="open = false">
                 <button @click="open = !open"
-                        class="{{ request()->is('halaman/*') || request()->routeIs('profil') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900' }} transition-colors duration-300 flex items-center gap-1 pb-1">
+                        class="{{ $isHomepage ? 'text-white/80 hover:text-white' : (request()->is('halaman/*') || request()->routeIs('profil') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900') }} transition-colors duration-300 flex items-center gap-1 pb-1">
                     Profil
                     <span class="material-symbols-outlined text-base transition-transform duration-300" :class="{ 'rotate-180': open }">expand_more</span>
                 </button>
@@ -167,24 +178,24 @@
             </div>
 
             <a href="{{ route('programs.index') }}"
-               class="{{ request()->routeIs('programs.*') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300' }}">
+               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('programs.*') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
                 Program
             </a>
             
             <a href="{{ route('fasilitas') }}"
-               class="{{ request()->routeIs('fasilitas') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300' }}">
+               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('fasilitas') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
                 Fasilitas
             </a>
             
             <a href="{{ route('ppdb') }}"
-               class="{{ request()->routeIs('ppdb') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300' }}">
+               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('ppdb') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
                 PPDB
             </a>
 
             {{-- Informasi Dropdown --}}
             <div class="relative" x-data="{ open: false }" @click.outside="open = false" @mouseenter="open = true" @mouseleave="open = false">
                 <button @click="open = !open"
-                        class="{{ request()->routeIs('articles.*') || request()->routeIs('agendas.*') || request()->routeIs('announcements.*') || request()->routeIs('gallery') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900' }} transition-colors duration-300 flex items-center gap-1 pb-1">
+                        class="{{ $isHomepage ? 'text-white/80 hover:text-white' : (request()->routeIs('articles.*') || request()->routeIs('agendas.*') || request()->routeIs('announcements.*') || request()->routeIs('gallery') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900') }} transition-colors duration-300 flex items-center gap-1 pb-1">
                     Informasi Pendaftaran
                     <span class="material-symbols-outlined text-base transition-transform duration-300" :class="{ 'rotate-180': open }">expand_more</span>
                 </button>
@@ -218,7 +229,7 @@
             </a>
 
             {{-- Hamburger Mobile --}}
-            <button class="lg:hidden p-2 rounded-xl bg-surface-container text-primary"
+            <button class="lg:hidden p-2 rounded-xl {{ $isHomepage ? 'bg-white/10 text-white border border-white/20' : 'bg-surface-container text-primary' }}"
                     x-data
                     @click="$dispatch('toggle-menu')"
                     aria-label="Toggle Menu">
