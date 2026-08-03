@@ -129,35 +129,35 @@
         :class="{ 'bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15': scrolled }"
         class="fixed top-0 left-0 right-0 z-[100] transition-[background-color,box-shadow,backdrop-filter] duration-300"
     @else
-        class="bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky z-[100]"
+        class="bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15 sticky top-0 z-[100]"
     @endif
 >
-    <div class="flex justify-between items-center w-full px-4 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
+    <div class="flex justify-between items-center w-full px-4 lg:px-6 2xl:px-8 py-3 lg:py-4 max-w-[1600px] mx-auto">
 
         {{-- Brand --}}
-        <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink">
+        <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-4 min-w-0 shrink xl:shrink-0">
             <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-10 lg:h-14 w-auto object-contain drop-shadow-md shrink-0">
             <div class="flex flex-col min-w-0">
-                <span class="text-[9px] lg:text-xs font-body font-bold {{ $isHomepage ? 'text-white/70' : 'text-emerald-800/60' }} uppercase tracking-widest truncate">
+                <span class="text-[9px] lg:text-xs font-body font-bold text-white/70 uppercase tracking-widest truncate">
                     {{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}
                 </span>
-                <span class="text-sm lg:text-xl font-bold leading-tight {{ $isHomepage ? 'text-white' : 'text-emerald-900 dark:text-emerald-50' }} font-body tracking-tight truncate">
+                <span class="text-sm lg:text-xl font-bold leading-tight text-white font-body tracking-tight truncate">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
                 </span>
             </div>
         </a>
 
         {{-- Desktop Nav --}}
-        <div class="hidden lg:flex items-center space-x-8 tracking-tight text-sm font-semibold font-body">
+        <div class="hidden xl:flex items-center gap-5 2xl:gap-7 whitespace-nowrap tracking-tight text-sm font-semibold font-body">
             <a href="{{ route('home') }}"
-               class="{{ $isHomepage ? 'text-white border-b-2 border-amber-400 pb-1' : 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' }}">
+               class="{{ $isHomepage ? 'text-amber-400 border-b-2 border-amber-400 pb-1' : 'text-white/80 hover:text-white transition-colors duration-300' }}">
                 Beranda
             </a>
 
             {{-- Profil Dropdown --}}
             <div class="relative" x-data="{ open: false }" @click.outside="open = false" @mouseenter="open = true" @mouseleave="open = false">
                 <button @click="open = !open"
-                        class="{{ $isHomepage ? 'text-white/80 hover:text-white' : (request()->is('halaman/*') || request()->routeIs('profil') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900') }} transition-colors duration-300 flex items-center gap-1 pb-1">
+                        class="{{ request()->is('halaman/*') || request()->routeIs('profil') ? 'text-amber-400 border-b-2 border-amber-400' : 'text-white/80 hover:text-white' }} transition-colors duration-300 flex items-center gap-1 pb-1">
                     Profil
                     <span class="material-symbols-outlined text-base transition-transform duration-300" :class="{ 'rotate-180': open }">expand_more</span>
                 </button>
@@ -178,24 +178,24 @@
             </div>
 
             <a href="{{ route('programs.index') }}"
-               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('programs.*') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
+               class="{{ request()->routeIs('programs.*') ? 'text-amber-400 border-b-2 border-amber-400 pb-1' : 'text-white/80 hover:text-white transition-colors duration-300' }}">
                 Program
             </a>
             
             <a href="{{ route('fasilitas') }}"
-               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('fasilitas') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
+               class="{{ request()->routeIs('fasilitas') ? 'text-amber-400 border-b-2 border-amber-400 pb-1' : 'text-white/80 hover:text-white transition-colors duration-300' }}">
                 Fasilitas
             </a>
             
             <a href="{{ route('ppdb') }}"
-               class="{{ $isHomepage ? 'text-white/80 hover:text-white transition-colors duration-300' : (request()->routeIs('ppdb') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900 transition-colors duration-300') }}">
+               class="{{ request()->routeIs('ppdb') ? 'text-amber-400 border-b-2 border-amber-400 pb-1' : 'text-white/80 hover:text-white transition-colors duration-300' }}">
                 PPDB
             </a>
 
             {{-- Informasi Dropdown --}}
             <div class="relative" x-data="{ open: false }" @click.outside="open = false" @mouseenter="open = true" @mouseleave="open = false">
                 <button @click="open = !open"
-                        class="{{ $isHomepage ? 'text-white/80 hover:text-white' : (request()->routeIs('articles.*') || request()->routeIs('agendas.*') || request()->routeIs('announcements.*') || request()->routeIs('gallery') ? 'text-amber-600 dark:text-amber-400 border-b-2 border-amber-600 pb-1' : 'text-emerald-800/70 dark:text-emerald-100/70 hover:text-emerald-900') }} transition-colors duration-300 flex items-center gap-1 pb-1">
+                        class="{{ request()->routeIs('articles.*') || request()->routeIs('agendas.*') || request()->routeIs('announcements.*') || request()->routeIs('gallery') ? 'text-amber-400 border-b-2 border-amber-400' : 'text-white/80 hover:text-white' }} transition-colors duration-300 flex items-center gap-1 pb-1">
                     Informasi Pendaftaran
                     <span class="material-symbols-outlined text-base transition-transform duration-300" :class="{ 'rotate-180': open }">expand_more</span>
                 </button>
@@ -220,16 +220,16 @@
         </div>
 
         {{-- CTA + Mobile Toggle --}}
-        <div class="flex items-center gap-3 shrink-0">
+        <div class="flex items-center gap-2 shrink-0">
             <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
                target="_blank"
                id="click_whatsapp_nav"
-               class="bg-primary hover:bg-primary-container text-white px-5 py-2.5 rounded-full text-sm font-bold uppercase tracking-wider scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-primary/20 hidden lg:flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">chat</span> Hubungi Admin
+               class="bg-primary hover:bg-primary-container text-white px-3.5 2xl:px-4 py-2.5 rounded-full text-xs 2xl:text-sm font-bold uppercase tracking-wide scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-primary/20 hidden xl:flex items-center gap-2 whitespace-nowrap">
+                <span class="material-symbols-outlined text-sm">chat</span> Daftar Sekarang
             </a>
 
             {{-- Hamburger Mobile --}}
-            <button class="lg:hidden p-2 rounded-xl {{ $isHomepage ? 'bg-white/10 text-white border border-white/20' : 'bg-surface-container text-primary' }}"
+            <button class="xl:hidden p-2 rounded-xl bg-white/10 text-white border border-white/20"
                     x-data
                     @click="$dispatch('toggle-menu')"
                     aria-label="Toggle Menu">
@@ -241,7 +241,7 @@
     {{-- Mobile Menu --}}
     <div x-data="{ open: false, openProfil: false, openInfo: false }" @toggle-menu.window="open = !open"
          x-show="open" x-transition
-         class="lg:hidden absolute top-full left-0 w-full border-t border-outline-variant/20 bg-white/95 backdrop-blur-xl max-h-[80vh] overflow-y-auto pb-6 shadow-2xl">
+         class="xl:hidden absolute top-full left-0 w-full border-t border-outline-variant/20 bg-white/95 backdrop-blur-xl max-h-[80vh] overflow-y-auto pb-6 shadow-2xl">
         <div class="px-6 py-4 space-y-1">
             <a href="{{ route('home') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold {{ request()->routeIs('home') ? 'bg-primary text-white' : 'text-on-surface hover:bg-surface-container' }}">Beranda</a>
             

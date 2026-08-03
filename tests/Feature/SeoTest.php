@@ -283,12 +283,36 @@ class SeoTest extends TestCase
             ->assertSee('@scroll.window="scrolled = window.scrollY > 24"', false)
             ->assertSee(':class="{ \'bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15\': scrolled }"', false)
             ->assertSee('fixed top-0', false)
-            ->assertSee('text-white/80 hover:text-white', false);
+            ->assertSee('text-white/80 hover:text-white', false)
+            ->assertSee('max-w-[1600px]', false)
+            ->assertSee('hidden xl:flex items-center gap-5 2xl:gap-7 whitespace-nowrap', false)
+            ->assertSee('hidden xl:flex items-center gap-2 whitespace-nowrap', false)
+            ->assertSee('xl:hidden p-2 rounded-xl', false)
+            ->assertSee('class="xl:hidden absolute top-full', false)
+            ->assertSee('Daftar Sekarang', false);
 
         $this->get('https://pptalfalah.com/program')
             ->assertOk()
             ->assertDontSee('data-home-navbar', false)
-            ->assertSee('bg-white/80 dark:bg-emerald-950/80 backdrop-blur-xl shadow-sm shadow-emerald-900/5 top-0 sticky', false);
+            ->assertSee('bg-primary/95 backdrop-blur-xl shadow-lg shadow-emerald-950/15 sticky top-0', false);
+    }
+
+    public function test_only_the_current_desktop_navigation_item_is_active(): void
+    {
+        $response = $this->get('https://pptalfalah.com/fasilitas');
+        $response->assertOk();
+
+        $document = new \DOMDocument;
+        $previousErrorHandling = libxml_use_internal_errors(true);
+        $document->loadHTML($response->getContent());
+        libxml_clear_errors();
+        libxml_use_internal_errors($previousErrorHandling);
+        $activeItems = (new \DOMXPath($document))->query(
+            '//nav//div[contains(@class, "hidden xl:flex")]//*[contains(concat(" ", normalize-space(@class), " "), " border-b-2 ")]'
+        );
+
+        $this->assertSame(1, $activeItems->length);
+        $this->assertSame('Fasilitas', trim($activeItems->item(0)->textContent));
     }
 
     public function test_article_search_is_not_indexed_and_uses_clean_canonical(): void
