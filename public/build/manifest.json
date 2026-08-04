@@ -1,12 +1,20 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-D1hpGpF1.css",
+    "file": "assets/app-CazmN4HG.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
     ]
+  },
+  "resources/fonts/general-sans/GeneralSans-Variable.woff2": {
+    "file": "assets/GeneralSans-Variable-p1VyP7gg.woff2",
+    "src": "resources/fonts/general-sans/GeneralSans-Variable.woff2"
+  },
+  "resources/fonts/general-sans/GeneralSans-VariableItalic.woff2": {
+    "file": "assets/GeneralSans-VariableItalic-DIM2rvVg.woff2",
+    "src": "resources/fonts/general-sans/GeneralSans-VariableItalic.woff2"
   },
   "resources/js/app.js": {
     "file": "assets/app-BbzB21r_.js",

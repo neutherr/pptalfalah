@@ -1,16 +1,32 @@
 @import 'tailwindcss';
 
+@font-face {
+    font-family: 'General Sans';
+    src: url('../fonts/general-sans/GeneralSans-Variable.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'General Sans';
+    src: url('../fonts/general-sans/GeneralSans-VariableItalic.woff2') format('woff2');
+    font-style: italic;
+    font-weight: 200 700;
+    font-display: swap;
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-    --font-headline: 'Cormorant Garamond', serif;
-    --font-body: 'Montserrat', sans-serif;
-    --font-label: 'Montserrat', sans-serif;
-    --font-hero: 'Cormorant Garamond', serif;
+    --font-sans: 'General Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-headline: var(--font-sans);
+    --font-body: var(--font-sans);
+    --font-label: var(--font-sans);
+    --font-hero: var(--font-sans);
 
     --color-primary: #002c13;
     --color-primary-dark: #001f0d;

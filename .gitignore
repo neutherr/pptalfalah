@@ -19,7 +19,6 @@ deploy_patch_*.zip
 /.zed
 /auth.json
 /node_modules
-/public/build
 /public/hot
 /public/storage
 /storage/*.key
