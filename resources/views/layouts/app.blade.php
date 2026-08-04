@@ -249,7 +249,7 @@
                 <span>Profil</span>
                 <span class="material-symbols-outlined transition-transform" :class="{ 'rotate-180': openProfil }">expand_more</span>
             </button>
-            <div x-show="openProfil" x-collapse class="px-4 py-2 space-y-1 bg-surface-container-low rounded-xl mb-2 mt-1 border border-outline-variant/10">
+            <div x-show="openProfil" class="px-4 py-2 space-y-1 bg-surface-container-low rounded-xl mb-2 mt-1 border border-outline-variant/10">
                 <a href="{{ route('profil') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-on-surface-variant hover:text-primary hover:bg-surface-container">
                     <span class="material-symbols-outlined text-base">account_balance</span> Profil Pesantren
                 </a>
@@ -270,7 +270,7 @@
                 <span>Informasi Publik</span>
                 <span class="material-symbols-outlined transition-transform" :class="{ 'rotate-180': openInfo }">expand_more</span>
             </button>
-            <div x-show="openInfo" x-collapse class="px-4 py-2 space-y-1 bg-surface-container-low rounded-xl mt-1 border border-outline-variant/10">
+            <div x-show="openInfo" class="px-4 py-2 space-y-1 bg-surface-container-low rounded-xl mt-1 border border-outline-variant/10">
                 <a href="{{ route('articles.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-on-surface-variant hover:text-primary hover:bg-surface-container">
                     <span class="material-symbols-outlined text-base">newspaper</span> Berita & Artikel
                 </a>
@@ -388,7 +388,7 @@
                 </ul>
                 <div class="rounded-xl overflow-hidden shadow-lg border border-emerald-800/50 relative group">
                     <div class="absolute inset-0 bg-emerald-950/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10"></div>
-                    <iframe src="https://maps.google.com/maps?q=Masjid+Nurul+Falah,+Jonggol+Utara&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Masjid+Nurul+Falah,+Jonggol+Utara&t=&z=15&ie=UTF8&iwloc=&output=embed" title="Peta lokasi Pondok Pesantren Tahfidz Al-Falah" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"></iframe>
                 </div>
             </div>
         </div>

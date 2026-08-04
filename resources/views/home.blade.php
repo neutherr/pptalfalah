@@ -47,8 +47,8 @@
     {{-- Hero Content --}}
     <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 py-20 lg:py-32">
         <div class="max-w-3xl">
-            <h1 class="font-hero text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-[1.2] tracking-tighter mb-4 sm:mb-6 animate-on-scroll">
-                {!! $settings['vision_headline'] ?? "Menanam Iman, Menuai Kemandirian<br/><span class='text-primary-fixed'>Pesantren Tahfidz</span>, <span class='text-secondary-fixed'>Informatika</span> & Agribisnis Terpadu" !!}
+            <h1 class="font-hero text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white [&_span]:text-inherit leading-[1.2] mb-4 sm:mb-6 animate-on-scroll">
+                {!! $settings['vision_headline'] ?? 'Menanam Iman, Menuai Kemandirian<br/>Pesantren Tahfidz, Informatika & Agribisnis Terpadu' !!}
             </h1>
             <p class="text-base sm:text-lg lg:text-xl text-emerald-50/80 max-w-xl mb-8 sm:mb-10 leading-relaxed font-medium animate-on-scroll" style="animation-delay: 200ms;">
                 {{ $settings['site_tagline'] ?? 'SMK Al-Falah Boarding School' }}
@@ -56,7 +56,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-                <a class="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
+                <a class="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
                    href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
                    target="_blank"
                    id="click_whatsapp_home">
@@ -65,7 +65,7 @@
                 </a>
 
                 @if(!empty($settings['active_brochure_url']))
-                <a class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center"
+                <a class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold text-sm hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center"
                    href="{{ $settings['active_brochure_url'] }}"
                    target="_blank"
                    id="click_download_brochure_home"
@@ -74,7 +74,7 @@
                     Unduh Brosur PDF
                 </a>
                 @else
-                <button class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold uppercase text-xs sm:text-sm tracking-widest hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center w-full sm:w-auto"
+                <button class="px-6 py-3 sm:px-8 sm:py-4 bg-secondary-container text-on-secondary-container rounded-full font-bold text-sm hover:bg-secondary-fixed transition-all shadow-xl flex items-center justify-center gap-2 text-center w-full sm:w-auto"
                         id="click_download_brochure_home"
                         onclick="alert('Brosur segera tersedia. Silakan hubungi admin via WhatsApp.')">
                     <span class="material-symbols-outlined text-base sm:text-lg">download</span>
@@ -162,7 +162,7 @@
                         <div class="w-1 h-6 bg-secondary/10 rounded-full group-hover:bg-secondary/30 transition-all"></div>
                     </div>
                     <div class="text-center md:text-left">
-                        <h4 class="font-body text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">{{ $mission['title'] }}</h4>
+                        <h3 class="font-body text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">{{ $mission['title'] }}</h3>
                         <p class="text-on-surface-variant text-base leading-relaxed">{{ $mission['desc'] }}</p>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                         <span class="text-lg font-bold text-primary group-hover:text-white">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                     </div>
                     <div>
-                        <h4 class="font-body text-xl font-bold text-primary">{{ $step['title'] }}</h4>
+                        <h3 class="font-body text-xl font-bold text-primary">{{ $step['title'] }}</h3>
                         <p class="text-on-surface-variant">{{ $step['desc'] }}</p>
                     </div>
                 </div>
@@ -281,15 +281,13 @@
 <section class="py-12 lg:py-24 bg-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16">
-            <span class="text-secondary font-bold tracking-[0.2em] uppercase text-xs block mb-4">Informasi Terupdate</span>
             <h2 class="font-headline text-3xl lg:text-4xl font-extrabold text-primary mb-4">Berita & Artikel Terkini</h2>
             <p class="text-on-surface-variant max-w-2xl mx-auto">Tetap terhubung dengan kegiatan dan prestasi terbaru kami sebagai wujud nyata dedikasi dalam mencetak generasi unggul.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mb-16">
             @forelse($latestArticles as $article)
-            <article class="group bg-surface-container-low rounded-[2rem] overflow-hidden border border-outline-variant/30 flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer"
-                     onclick="window.location.href='{{ route('articles.show', $article->slug) }}'">
+            <article class="group bg-surface-container-low rounded-[2rem] overflow-hidden border border-outline-variant/30 flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
                 <div class="relative h-56 overflow-hidden">
                     <img alt="{{ $article->title }}"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -393,7 +391,7 @@
                              loading="lazy"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent flex flex-col justify-end p-12">
                             @if($item->category)
-                            <span class="text-secondary-fixed font-bold uppercase tracking-widest text-sm mb-2">{{ $item->category->name }}</span>
+                            <span class="text-secondary-fixed font-semibold text-sm mb-2">{{ $item->category->name }}</span>
                             @endif
                             <h3 class="text-3xl font-headline font-bold text-white">{{ $item->title }}</h3>
                             @if($item->caption)
@@ -414,7 +412,7 @@
                         <img alt="{{ $slide['title'] }}" class="w-full h-full object-cover transition-transform duration-1000 group-hover/slide:scale-110"
                              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdiKuaWCrTGvdN0rsNO4bYxT4Ioh3XWNHfBwY8qw6M-Zx4XI0jKN9VRGVAxK2GQ8CRzvNXNzDr6Zv9A7MP9pdEs8EE4vNaepc5RgiOwKUhjzAYnyr-8kZMMy96EP0ADeaHSTY0_Ux-WobhLatDmDClwHJg1QZ0sJBUjU0aWKBm6sXmD348k6b7JP22IPTnzBEIOngz4lY3ZoOnSA_6e9Hg9VyfphJG9HI-allm3VXuQtFsdFUos_1O3GVTmUxj-85JxC__RJXS8nA"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent flex flex-col justify-end p-12">
-                            <span class="text-secondary-fixed font-bold uppercase tracking-widest text-sm mb-2">{{ $slide['label'] }}</span>
+                            <span class="text-secondary-fixed font-semibold text-sm mb-2">{{ $slide['label'] }}</span>
                             <h3 class="text-3xl font-headline font-bold text-white">{{ $slide['title'] }}</h3>
                             <p class="text-white/80 mt-4 max-w-xl">{{ $slide['caption'] }}</p>
                         </div>
@@ -443,9 +441,15 @@
             {{-- Pagination Dots --}}
             <div class="flex justify-center gap-3 mt-8">
                 <template x-for="i in total" :key="i">
-                    <button @click="goTo(i - 1)" 
-                            class="h-2 rounded-full transition-all focus:outline-none"
-                            :class="active === (i - 1) ? 'w-12 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'"></button>
+                    <button type="button"
+                            @click="goTo(i - 1)"
+                            class="w-11 h-11 flex items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                            x-bind:aria-label="'Buka slide galeri ' + i"
+                            x-bind:aria-current="active === (i - 1) ? 'true' : 'false'">
+                        <span class="h-2 rounded-full transition-all"
+                              :class="active === (i - 1) ? 'w-12 bg-primary' : 'w-2 bg-outline-variant hover:bg-primary/50'"
+                              aria-hidden="true"></span>
+                    </button>
                 </template>
             </div>
         </div>
