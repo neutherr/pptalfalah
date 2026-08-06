@@ -17,7 +17,7 @@
 ## 🔄 Alur Update Project (Rutin)
 
 ```
-Edit kode di lokal → Push ke GitHub → SSH ke server → Pull → Migrate → Optimize
+Edit kode di lokal → Build & test → Commit semua perubahan → Push → SSH → Pull → Migrate jika perlu → Optimize
 ```
 
 ---
@@ -30,24 +30,33 @@ Lakukan ini setiap selesai mengerjakan fitur/perubahan:
 # Di terminal lokal (PowerShell / Git Bash)
 cd C:\xampp\htdocs\pptalfalah
 
-# Cek file yang berubah
+# Build asset production sebelum staging
+npm run build
+
+# Pastikan perubahan tidak merusak fitur yang sudah ada
+php artisan test
+
+# Cek file yang akan masuk commit
 git status
 
 # Tambahkan semua perubahan
 git add .
 
 # Commit dengan pesan yang jelas
-git commit -m "feat: deskripsi perubahan yang dilakukan"
+git commit -m "fix: unify homepage hero typography"
 
 # Push ke GitHub
 git push origin main
 ```
 
+> Jalankan `npm run build` sebelum `git add .` agar hasil build terbaru di `public/build/` ikut dalam commit yang sama. Jumlah test/assertion dapat berubah; patokannya adalah seluruh test lulus tanpa failure.
+
 > **📝 Tips pesan commit yang baik:**
 >
 > - `feat: tambah halaman galeri`
 > - `fix: perbaiki bug upload foto`
-> - `update: perbarui konten hero section`
+> - `fix: unify homepage hero typography`
+> - `style: use General Sans typography`
 
 ---
 
@@ -109,19 +118,19 @@ php artisan optimize:clear && php artisan optimize
 
 ---
 
-## 🖼️ Jika Ada Perubahan Asset (CSS/JS)
+## 🖼️ Jika Ada Perubahan Tampilan atau Asset
 
-Jika kamu mengubah file CSS, JS, atau menjalankan `npm run build` secara lokal:
+Perubahan Blade yang menambah atau mengubah class Tailwind, CSS, atau JavaScript wajib dibuild sebelum commit. Langkah ini sudah termasuk dalam **Step 1**:
 
 ```bash
-# Di lokal — build dulu, lalu commit hasilnya
 npm run build
+php artisan test
 git add .
-git commit -m "build: update compiled assets"
+git commit -m "fix: deskripsi perubahan"
 git push origin main
 ```
 
-> **Catatan:** File hasil build (`public/build/`) harus ikut di-commit dan push.
+> **Catatan:** File hasil build (`public/build/`) harus ikut dalam commit perubahan, tidak perlu dibuatkan commit build terpisah.
 
 ---
 
@@ -250,7 +259,10 @@ php artisan optimize
 
 ## ✅ Checklist Update Rutin
 
-- [ ] Edit & test kode di lokal (XAMPP)
+- [ ] Edit kode di lokal (XAMPP)
+- [ ] `npm run build`
+- [ ] `php artisan test` sampai seluruh test lulus
+- [ ] `git status` untuk memeriksa perubahan
 - [ ] `git add . && git commit -m "..."` di lokal
 - [ ] `git push origin main` di lokal
 - [ ] SSH ke server Hostinger
