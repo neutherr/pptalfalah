@@ -34,9 +34,8 @@
                 </ul>
                 <p class="mt-4 text-sm font-semibold text-on-surface">Akta, KK, rapor, dan bukti pembayaran tidak perlu diunggah ke website.</p>
             </section>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row print:hidden">
+            <div class="mt-8 print:hidden">
                 <a href="{{ $whatsapp }}" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Beri Tahu Panitia via WhatsApp</a>
-                <button type="button" onclick="window.print()" class="inline-flex min-h-11 items-center justify-center rounded-lg border border-outline-variant px-5 py-3 font-semibold text-on-surface transition-colors hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Cetak Bukti</button>
             </div>
         </article>
     </div>

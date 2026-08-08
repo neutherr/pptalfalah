@@ -45,6 +45,7 @@ class PpdbRegistrationExporter extends Exporter
             ExportColumn::make('period.academic_year')->label('Tahun Ajaran'),
             ExportColumn::make('wave.name')->label('Gelombang'),
             ExportColumn::make('status')->label('Status')->formatStateUsing(fn (string $state) => $state === PpdbRegistration::STATUS_REVIEWED ? 'Sudah Ditinjau' : 'Baru'),
+            ExportColumn::make('admin_notes')->label('Catatan Admin'),
             ExportColumn::make('submitted_at')->label('Tanggal Daftar'),
         ];
     }

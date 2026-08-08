@@ -14,6 +14,15 @@ class ViewPpdbRegistration extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
+            Actions\Action::make('correctData')
+                ->label('Koreksi Data')
+                ->icon('heroicon-o-pencil-square')
+                ->fillForm(fn () => PpdbRegistrationResource::correctionFormData($this->record))
+                ->form(PpdbRegistrationResource::correctionFormSchema())
+                ->action(function (array $data): void {
+                    PpdbRegistrationResource::correctData($this->record, $data);
+                    $this->record->refresh();
+                }),
             Actions\Action::make('markReviewed')
                 ->label('Tandai Ditinjau')
                 ->icon('heroicon-o-check-circle')

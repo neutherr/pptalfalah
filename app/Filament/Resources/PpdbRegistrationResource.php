@@ -6,6 +6,7 @@ use App\Filament\Exports\PpdbRegistrationExporter;
 use App\Filament\Resources\PpdbRegistrationResource\Pages;
 use App\Models\PpdbRegistration;
 use Filament\Actions\Exports\Enums\ExportFormat;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
@@ -58,6 +59,52 @@ class PpdbRegistrationResource extends Resource
         return 'https://wa.me/'.$phone.'?text='.urlencode($message);
     }
 
+    public static function correctionFormSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('full_name')
+                ->label('Nama Lengkap')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('school_name')
+                ->label('Sekolah Asal')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('primary_contact_phone')
+                ->label('Nomor WhatsApp')
+                ->tel()
+                ->required()
+                ->maxLength(20)
+                ->rule('regex:/^(?:\\+62|62|0)8[0-9\\s-]{7,16}$/'),
+            Forms\Components\Textarea::make('admin_notes')
+                ->label('Catatan Admin')
+                ->placeholder('Contoh: Janji datang 12 Agustus 2026.')
+                ->rows(4)
+                ->maxLength(2000)
+                ->columnSpanFull(),
+        ];
+    }
+
+    public static function correctionFormData(PpdbRegistration $registration): array
+    {
+        return [
+            'full_name' => $registration->full_name,
+            'school_name' => $registration->school_name,
+            'primary_contact_phone' => $registration->primary_contact_phone,
+            'admin_notes' => $registration->admin_notes,
+        ];
+    }
+
+    public static function correctData(PpdbRegistration $registration, array $data): void
+    {
+        $registration->update([
+            'full_name' => trim($data['full_name']),
+            'school_name' => trim($data['school_name']),
+            'primary_contact_phone' => trim($data['primary_contact_phone']),
+            'admin_notes' => filled($data['admin_notes'] ?? null) ? trim($data['admin_notes']) : null,
+        ]);
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([]);
@@ -72,6 +119,7 @@ class PpdbRegistrationResource extends Resource
                 Infolists\Components\TextEntry::make('period.academic_year')->label('Tahun Ajaran'),
                 Infolists\Components\TextEntry::make('wave.name')->label('Gelombang'),
                 Infolists\Components\TextEntry::make('submitted_at')->label('Tanggal Daftar')->dateTime('d M Y, H:i'),
+                Infolists\Components\TextEntry::make('admin_notes')->label('Catatan Admin')->placeholder('Belum ada catatan')->columnSpanFull(),
             ])->columns(3),
             Infolists\Components\Section::make('Calon Santri')->schema([
                 Infolists\Components\TextEntry::make('full_name')->label('Nama Lengkap'),
@@ -140,6 +188,12 @@ class PpdbRegistrationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
+                Tables\Actions\Action::make('correctData')
+                    ->label('Koreksi Data')
+                    ->icon('heroicon-o-pencil-square')
+                    ->fillForm(fn (PpdbRegistration $record) => self::correctionFormData($record))
+                    ->form(self::correctionFormSchema())
+                    ->action(fn (PpdbRegistration $record, array $data) => self::correctData($record, $data)),
                 Tables\Actions\Action::make('markReviewed')
                     ->label('Tandai Ditinjau')
                     ->icon('heroicon-o-check-circle')

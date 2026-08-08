@@ -21,7 +21,7 @@ class PpdbRegistration extends Model
         'father_name', 'father_education', 'father_job', 'mother_name', 'mother_education',
         'mother_job', 'primary_contact_relation', 'primary_contact_phone', 'guardian_name',
         'guardian_relationship', 'guardian_education', 'guardian_job', 'accuracy_accepted_at',
-        'privacy_accepted_at', 'submitted_at', 'reviewed_at',
+        'privacy_accepted_at', 'submitted_at', 'reviewed_at', 'admin_notes',
     ];
 
     protected function casts(): array

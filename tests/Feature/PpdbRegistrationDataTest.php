@@ -103,7 +103,8 @@ class PpdbRegistrationDataTest extends TestCase
             ->assertSee('menunggu peninjauan panitia')
             ->assertSee('Beri Tahu Panitia via WhatsApp')
             ->assertSee('Mohon+ditinjau', false)
-            ->assertDontSee('Kirim Nomor ke WhatsApp');
+            ->assertDontSee('Kirim Nomor ke WhatsApp')
+            ->assertDontSee('Cetak Bukti');
     }
 
     private function registrationData(): array

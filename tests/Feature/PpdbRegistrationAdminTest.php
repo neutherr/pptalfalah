@@ -78,6 +78,42 @@ class PpdbRegistrationAdminTest extends TestCase
         $this->assertNotNull($registration->fresh()->reviewed_at);
     }
 
+    public function test_admin_can_correct_limited_fields_and_add_notes(): void
+    {
+        $registration = $this->createRegistration();
+        $originalNik = $registration->nik;
+
+        Livewire::test(ListPpdbRegistrations::class)
+            ->callTableAction('correctData', $registration, data: [
+                'full_name' => 'Muhammad Fadhil Dikoreksi',
+                'school_name' => 'SMP Al-Falah Uji',
+                'primary_contact_phone' => '081298765432',
+                'admin_notes' => 'Janji datang 12 Agustus 2026.',
+                'nik' => '3275011501019999',
+            ])
+            ->assertHasNoTableActionErrors();
+
+        $registration->refresh();
+
+        $this->assertSame('Muhammad Fadhil Dikoreksi', $registration->full_name);
+        $this->assertSame('SMP Al-Falah Uji', $registration->school_name);
+        $this->assertSame('081298765432', $registration->primary_contact_phone);
+        $this->assertSame('Janji datang 12 Agustus 2026.', $registration->admin_notes);
+        $this->assertSame($originalNik, $registration->nik);
+
+        Livewire::test(ViewPpdbRegistration::class, ['record' => $registration->getRouteKey()])
+            ->callAction('correctData', data: [
+                'full_name' => 'Muhammad Fadhil Final',
+                'school_name' => 'SMP Al-Falah Final',
+                'primary_contact_phone' => '081211112222',
+                'admin_notes' => 'Nomor WhatsApp sudah dikonfirmasi.',
+            ])
+            ->assertHasNoActionErrors();
+
+        $this->assertSame('Muhammad Fadhil Final', $registration->fresh()->full_name);
+        $this->assertSame('Nomor WhatsApp sudah dikonfirmasi.', $registration->fresh()->admin_notes);
+    }
+
     public function test_navigation_badge_counts_only_new_registrations(): void
     {
         $newRegistration = $this->createRegistration();
@@ -171,6 +207,7 @@ class PpdbRegistrationAdminTest extends TestCase
         $this->assertTrue($columnNames->contains('nik_last4'));
         $this->assertTrue($columnNames->contains('nik'));
         $this->assertTrue($columnNames->contains('family_card_number'));
+        $this->assertTrue($columnNames->contains('admin_notes'));
         $this->assertFalse($columnNames->contains('photo_path'));
     }
 
