@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 class PpdbPeriod extends Model
 {
@@ -31,5 +32,33 @@ class PpdbPeriod extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    public function openWave(?Carbon $date = null): ?PpdbWave
+    {
+        $date ??= today();
+
+        return $this->waves()
+            ->where('is_active', true)
+            ->whereDate('registration_start', '<=', $date)
+            ->whereDate('registration_end', '>=', $date)
+            ->orderBy('order')
+            ->orderBy('id')
+            ->first();
+    }
+
+    public static function currentOpenWave(?Carbon $date = null): ?PpdbWave
+    {
+        $date ??= today();
+
+        return PpdbWave::query()
+            ->with('period')
+            ->whereHas('period', fn ($query) => $query->active())
+            ->where('is_active', true)
+            ->whereDate('registration_start', '<=', $date)
+            ->whereDate('registration_end', '>=', $date)
+            ->orderBy('order')
+            ->orderBy('id')
+            ->first();
     }
 }

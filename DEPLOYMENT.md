@@ -271,3 +271,24 @@ php artisan optimize
 - [ ] `php artisan migrate --force` (jika ada migration baru)
 - [ ] `php artisan optimize:clear && php artisan optimize`
 - [ ] Cek website di browser ✅
+
+### Tambahan Saat Deploy Fitur PPDB Online
+
+Jalankan setelah `git pull origin main`:
+
+```bash
+cd ~/domains/pptalfalah.com/public_html
+php artisan migrate --force
+mkdir -p storage/app/private/ppdb/photos
+chmod -R ug+rwX storage bootstrap/cache
+php artisan optimize:clear
+php artisan optimize
+```
+
+Migration wilayah mengimpor sekitar 84 ribu data desa, jadi tunggu sampai perintah selesai dan jangan menghentikan proses. Setelah itu:
+
+- Pastikan `storage/app/private/ppdb/photos` dapat ditulis.
+- Pastikan periode dan gelombang PPDB aktif sudah benar di Filament.
+- Lakukan satu pendaftaran dummy dari `/ppdb/daftar`.
+- Cek bukti pendaftaran, foto privat, daftar admin, CSV, dan XLSX.
+- Hapus pendaftaran dummy dari Filament sebelum membuka form ke publik.

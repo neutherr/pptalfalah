@@ -119,7 +119,11 @@
 <body class="bg-surface font-body text-on-background overflow-x-hidden">
 
 {{-- ===== TOP NAVIGATION ===== --}}
-@php($isHomepage = request()->routeIs('home'))
+@php
+    $isHomepage = request()->routeIs('home');
+    $ppdbCtaUrl = $openPpdbWave ? route('ppdb.register') : route('ppdb');
+    $ppdbCtaLabel = $openPpdbWave ? 'Daftar Sekarang' : 'Info PPDB';
+@endphp
 <nav
     @if($isHomepage)
         data-home-navbar
@@ -220,11 +224,9 @@
 
         {{-- CTA + Mobile Toggle --}}
         <div class="flex items-center gap-2 shrink-0">
-            <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
-               target="_blank"
-               id="click_whatsapp_nav"
+            <a data-ppdb-cta="desktop" href="{{ $ppdbCtaUrl }}"
                class="bg-primary hover:bg-primary-container text-white px-3.5 2xl:px-4 py-2.5 rounded-full text-xs 2xl:text-sm font-bold uppercase tracking-wide scale-95 active:scale-90 transition-all duration-300 shadow-lg shadow-primary/20 hidden xl:flex items-center gap-2 whitespace-nowrap">
-                <span class="material-symbols-outlined text-sm">chat</span> Daftar Sekarang
+                {{ $ppdbCtaLabel }}
             </a>
 
             {{-- Hamburger Mobile --}}
@@ -286,8 +288,12 @@
             </div>
 
             <div class="px-6 py-6 border-t border-outline-variant/30">
+                <a data-ppdb-cta="mobile" href="{{ $ppdbCtaUrl }}"
+                   class="mb-3 flex min-h-11 items-center justify-center w-full px-6 py-3 bg-primary text-white font-bold rounded-xl">
+                    {{ $ppdbCtaLabel }}
+                </a>
                 <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}" target="_blank"
-                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-white font-bold rounded-2xl">
+                   class="flex min-h-11 items-center justify-center gap-2 w-full px-6 py-3 border border-outline-variant text-on-surface font-bold rounded-xl">
                     <span class="material-symbols-outlined text-sm">chat</span> Hub Admin (081510029919)
                 </a>
             </div>
@@ -315,9 +321,9 @@
                 <div class="bg-white p-3.5 rounded-2xl inline-block mb-6 shadow-xl border border-white/10 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
                     <img src="{{ asset('assets/LOGO2.png') }}" alt="Logo {{ $settings['institution_name'] ?? 'Al-Falah' }}" class="h-14 lg:h-16 w-auto object-contain">
                 </div>
-                <h4 class="text-xl font-body font-bold text-white mb-3 tracking-tight">
+                <h2 class="text-xl font-body font-bold text-white mb-3 tracking-tight">
                     {{ $settings['site_name'] ?? 'SMK Al-Falah Boarding School' }}
-                </h4>
+                </h2>
                 <p class="text-emerald-100/70 text-sm leading-relaxed mb-8 max-w-sm">
                     {{ $settings['footer_description'] ?? 'Pesantren modern dengan sistem pendidikan terpadu, mendidik generasi qur\'ani, mandiri, dan berakhlak mulia.' }}
                 </p>
@@ -339,10 +345,10 @@
 
             {{-- Quick Links --}}
             <div class="lg:col-span-2 lg:col-start-6">
-                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
+                <h3 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Eksplorasi
-                </h5>
+                </h3>
                 <ul class="space-y-3.5">
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('home') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Beranda</a></li>
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('programs.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Program</a></li>
@@ -354,10 +360,10 @@
 
             {{-- Informasi --}}
             <div class="lg:col-span-2">
-                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
+                <h3 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Informasi
-                </h5>
+                </h3>
                 <ul class="space-y-3.5">
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('ppdb') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Info PPDB</a></li>
                     <li><a class="text-emerald-100/70 text-sm hover:text-amber-400 hover:translate-x-1.5 transition-all flex items-center gap-2 group" href="{{ route('articles.index') }}"><span class="material-symbols-outlined text-[16px] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-amber-500">arrow_right</span> Artikel</a></li>
@@ -368,10 +374,10 @@
 
             {{-- Kontak & Lokasi --}}
             <div class="lg:col-span-3">
-                <h5 class="text-white font-body font-bold mb-6 flex items-center gap-2">
+                <h3 class="text-white font-body font-bold mb-6 flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                     Hubungi Kami
-                </h5>
+                </h3>
                 <ul class="space-y-4 mb-6">
                     <li class="flex items-start gap-3 text-emerald-100/70 text-sm">
                         <div class="w-8 h-8 rounded-full bg-emerald-800/40 flex items-center justify-center shrink-0 border border-emerald-700/50">
@@ -399,7 +405,7 @@
                 &copy; {{ date('Y') }} <span class="font-bold text-emerald-100/70">{{ $settings['institution_name'] ?? 'Pondok Pesantren Tahfidz Al-Falah' }}</span>. Hak Cipta Dilindungi.
             </p>
             <div class="flex flex-wrap justify-center gap-6 text-xs font-medium text-emerald-100/50">
-                <a href="#" class="hover:text-amber-400 transition-colors">Kebijakan Privasi</a>
+                <a href="{{ route('page.show', 'kebijakan-privasi-ppdb') }}" class="hover:text-amber-400 transition-colors">Kebijakan Privasi</a>
                 <a href="#" class="hover:text-amber-400 transition-colors">Syarat & Ketentuan</a>
             </div>
         </div>
@@ -423,7 +429,9 @@
 </a>
 
 {{-- Alpine.js --}}
+@unless(request()->routeIs('ppdb.register'))
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endunless
 
 {{-- Global Reveal Animation --}}
 <script>

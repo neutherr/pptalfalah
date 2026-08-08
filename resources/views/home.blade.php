@@ -56,10 +56,9 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-                    <a class="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center"
-                        href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281510029919' }}?text={{ urlencode($settings['whatsapp_message'] ?? '') }}"
-                        target="_blank" id="click_whatsapp_home">
-                        Daftar
+                    <a data-ppdb-cta="home-hero" href="{{ $activePpdb?->openWave() ? route('ppdb.register') : route('ppdb') }}"
+                        class="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-primary-container text-white border border-primary-fixed/30 rounded-full font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-xl text-center">
+                        {{ $activePpdb?->openWave() ? 'Daftar' : 'Info PPDB' }}
                         <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                     </a>
 

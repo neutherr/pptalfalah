@@ -289,7 +289,7 @@ class SeoTest extends TestCase
             ->assertSee('hidden xl:flex items-center gap-2 whitespace-nowrap', false)
             ->assertSee('xl:hidden p-2 rounded-xl', false)
             ->assertSee('class="xl:hidden absolute top-full', false)
-            ->assertSee('Daftar Sekarang', false);
+            ->assertSee('Info PPDB', false);
 
         $this->get('https://pptalfalah.com/program')
             ->assertOk()

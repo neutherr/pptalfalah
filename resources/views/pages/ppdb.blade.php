@@ -29,6 +29,11 @@
                             Pendaftaran SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor. Lihat jadwal, persyaratan, biaya, dan konsultasi pendaftaran di satu halaman.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3">
+                            @if($openWave)
+                                <a data-ppdb-cta="main" href="{{ route('ppdb.register') }}" class="inline-flex justify-center px-6 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
+                                    Daftar Sekarang
+                                </a>
+                            @endif
                             <a href="{{ $whatsappUrl }}" target="_blank" id="click_whatsapp_ppdb" class="inline-flex justify-center px-6 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
                                 Tanya Panitia PPDB
                             </a>
@@ -130,28 +135,24 @@
                         </section>
                     @endif
 
-                    @if($activePeriod->requirements->isNotEmpty())
-                        <section aria-labelledby="syarat-ppdb">
-                            <div class="mb-7">
-                                <h2 id="syarat-ppdb" class="text-3xl font-bold font-headline text-on-surface mb-2">Persyaratan Berkas</h2>
-                                <p class="text-on-surface-variant">Siapkan dokumen berikut sebelum menghubungi panitia.</p>
-                            </div>
-
-                            <ol class="border-y border-outline-variant/40 divide-y divide-outline-variant/40">
-                                @foreach($activePeriod->requirements as $index => $requirement)
-                                    <li class="py-5 flex gap-5 items-start">
-                                        <span class="text-sm font-bold text-primary pt-0.5">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                                        <div>
-                                            <h3 class="font-bold text-on-surface">{{ $requirement->title }}</h3>
-                                            @if($requirement->description)
-                                                <p class="text-sm text-on-surface-variant mt-1 leading-relaxed">{{ $requirement->description }}</p>
-                                            @endif
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ol>
-                        </section>
-                    @endif
+                    <section aria-labelledby="syarat-ppdb">
+                        <div class="mb-7">
+                            <h2 id="syarat-ppdb" class="text-3xl font-bold font-headline text-on-surface mb-2">Persyaratan Setelah Daftar</h2>
+                            <p class="text-on-surface-variant">Setelah pendaftaran online berhasil, bawa dokumen berikut saat verifikasi dan tes di pondok.</p>
+                        </div>
+                        <ol class="border-y border-outline-variant/40 divide-y divide-outline-variant/40">
+                            @foreach([
+                                'Fotokopi Akta Kelahiran dan Kartu Keluarga',
+                                'Pas foto 3×4 sebanyak empat lembar',
+                                'Fotokopi rapor terakhir',
+                                'Mengikuti tes akademik di pondok',
+                                'Membayar biaya pendaftaran Rp150.000 saat datang',
+                            ] as $index => $requirement)
+                                <li class="py-5 flex gap-5 items-start"><span class="text-sm font-bold text-primary pt-0.5">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><p class="font-semibold text-on-surface">{{ $requirement }}</p></li>
+                            @endforeach
+                        </ol>
+                        <p class="mt-4 text-sm font-semibold text-on-surface">Akta, KK, rapor, dan bukti pembayaran tidak perlu diunggah ke website.</p>
+                    </section>
                 </div>
 
                 @if($activePeriod->fees->isNotEmpty())
@@ -177,7 +178,12 @@
                             Biaya merupakan estimasi reguler dan dapat dicicil sesuai ketentuan administrasi sekolah dan asrama.
                         </p>
 
-                        <a href="{{ $whatsappUrl }}" target="_blank" class="flex justify-center w-full px-5 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
+                        @if($openWave)
+                            <a data-ppdb-cta="fee" href="{{ route('ppdb.register') }}" class="mb-3 flex justify-center w-full px-5 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
+                                Daftar Sekarang
+                            </a>
+                        @endif
+                        <a href="{{ $whatsappUrl }}" target="_blank" class="flex justify-center w-full px-5 py-3.5 border border-outline-variant hover:border-primary text-on-surface font-bold rounded-lg transition-colors">
                             Tanya Panitia PPDB
                         </a>
                     </aside>

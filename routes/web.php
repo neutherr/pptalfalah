@@ -38,6 +38,8 @@ Route::prefix('program')->name('programs.')->group(function () {
 
 // PPDB
 Route::get('/ppdb', [PpdbController::class, 'index'])->name('ppdb');
+Route::get('/ppdb/daftar', [PpdbController::class, 'register'])->name('ppdb.register');
+Route::get('/ppdb/pendaftaran/{token}', [PpdbController::class, 'proof'])->name('ppdb.proof');
 
 // Galeri
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');

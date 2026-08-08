@@ -75,6 +75,15 @@ class HomeAccessibilityTest extends TestCase
             ->assertDontSee('x-collapse', false);
     }
 
+    public function test_footer_headings_do_not_skip_levels(): void
+    {
+        $xpath = $this->xpath($this->get('/')->assertOk()->getContent());
+
+        $this->assertSame(1, $xpath->query('//footer//h2[normalize-space()="SMK Al-Falah Boarding School"]')->length);
+        $this->assertSame(3, $xpath->query('//footer//h3')->length);
+        $this->assertSame(0, $xpath->query('//footer//h4 | //footer//h5')->length);
+    }
+
     private function xpath(string $html): DOMXPath
     {
         $document = new DOMDocument;
