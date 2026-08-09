@@ -86,6 +86,13 @@
         </div>
     </section>
 
+    <div
+        data-hero-transition="blur"
+        aria-hidden="true"
+        class="pointer-events-none relative z-20 -mt-20 h-20 bg-surface-container backdrop-blur-xl sm:-mt-24 sm:h-24"
+        style="-webkit-mask-image: linear-gradient(to bottom, transparent, black); mask-image: linear-gradient(to bottom, transparent, black);">
+    </div>
+
     {{-- ===== WHO WE ARE ===== --}}
     <section class="py-12 lg:py-24 relative overflow-hidden bg-surface-container">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">

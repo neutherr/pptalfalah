@@ -75,6 +75,14 @@ class HomeAccessibilityTest extends TestCase
             ->assertDontSee('x-collapse', false);
     }
 
+    public function test_homepage_uses_a_soft_blur_between_the_hero_and_next_section(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('data-hero-transition="blur"', false)
+            ->assertSee('backdrop-blur-xl', false);
+    }
+
     public function test_footer_headings_do_not_skip_levels(): void
     {
         $xpath = $this->xpath($this->get('/')->assertOk()->getContent());
