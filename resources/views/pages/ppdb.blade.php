@@ -115,19 +115,9 @@
 
                             <div class="border-y border-outline-variant/40 divide-y divide-outline-variant/40">
                                 @foreach($waves as $wave)
-                                    <article class="py-6 grid sm:grid-cols-[minmax(0,1fr)_1fr] gap-5 sm:gap-8">
-                                        <div>
-                                            <h3 class="font-bold text-xl text-on-surface mb-1">{{ $wave->name }}</h3>
-                                            <p class="text-sm text-on-surface-variant">{{ $wave->registration_start->format('d M Y') }} – {{ $wave->registration_end->format('d M Y') }}</p>
-                                        </div>
-                                        <div class="sm:text-right">
-                                            <p class="font-semibold text-on-surface">
-                                                {{ $wave->test_date ? 'Tes seleksi '.$wave->test_date->format('d M Y') : 'Tes seleksi setelah pendaftaran' }}
-                                            </p>
-                                            @if($wave->announcement_date)
-                                                <p class="text-sm text-on-surface-variant mt-1">Pengumuman {{ $wave->announcement_date->format('d M Y') }}</p>
-                                            @endif
-                                        </div>
+                                    <article class="py-6">
+                                        <h3 class="font-bold text-xl text-on-surface mb-1">{{ $wave->name }}</h3>
+                                        <p class="text-sm text-on-surface-variant">{{ $wave->registration_start->format('d M Y') }} – {{ $wave->registration_end->format('d M Y') }}</p>
                                     </article>
                                 @endforeach
                             </div>
