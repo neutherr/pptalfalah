@@ -22,18 +22,6 @@
                 <div><dt class="text-sm text-on-surface-variant">Gelombang</dt><dd class="mt-1 font-semibold text-on-surface">{{ $registration->wave->name }}</dd></div>
                 <div><dt class="text-sm text-on-surface-variant">Tanggal daftar</dt><dd class="mt-1 font-semibold text-on-surface">{{ $registration->submitted_at->translatedFormat('d F Y, H:i') }} WIB</dd></div>
             </dl>
-            <section class="mt-8">
-                <h2 class="mb-3 text-xl font-bold text-on-surface">Langkah berikutnya</h2>
-                <p class="mb-4 leading-relaxed text-on-surface-variant">Setelah pendaftaran online berhasil, bawa dokumen berikut saat verifikasi dan tes di pondok.</p>
-                <ul class="list-disc space-y-2 pl-5 text-on-surface-variant">
-                    <li>Fotokopi Akta Kelahiran dan Kartu Keluarga.</li>
-                    <li>Pas foto 3×4 sebanyak empat lembar.</li>
-                    <li>Fotokopi rapor terakhir.</li>
-                    <li>Mengikuti tes akademik di pondok.</li>
-                    <li>Membayar biaya pendaftaran Rp150.000 saat datang.</li>
-                </ul>
-                <p class="mt-4 text-sm font-semibold text-on-surface">Akta, KK, rapor, dan bukti pembayaran tidak perlu diunggah ke website.</p>
-            </section>
             <div class="mt-8 print:hidden">
                 <a href="{{ $whatsapp }}" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Beri Tahu Panitia via WhatsApp</a>
             </div>

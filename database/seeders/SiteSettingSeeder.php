@@ -49,7 +49,7 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'ppdb_step_2_title', 'value' => 'Tes Seleksi Akademik',   'group' => 'ppdb'],
             ['key' => 'ppdb_step_2_desc',  'value' => 'Pelaksanaan tes masuk sesuai jadwal gelombang yang dipilih.', 'group' => 'ppdb'],
             ['key' => 'ppdb_step_3_title', 'value' => 'Pengumuman & Daftar Ulang','group' => 'ppdb'],
-            ['key' => 'ppdb_step_3_desc',  'value' => 'Penetapan kelulusan dan penyelesaian administrasi biaya pendidikan.', 'group' => 'ppdb'],
+            ['key' => 'ppdb_step_3_desc',  'value' => 'Panitia menghubungi calon santri untuk proses berikutnya.', 'group' => 'ppdb'],
 
             // ===================== MEDIA SOSIAL =====================
             ['key' => 'instagram_url',     'value' => '',  'group' => 'social'],

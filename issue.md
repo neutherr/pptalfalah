@@ -37,7 +37,9 @@ Assalamu'alaikum Bapak/Ibu.
 
 Pendaftaran online ananda {nama_calon_santri} dengan nomor {nomor_pendaftaran} telah ditinjau oleh panitia PPDB PPT Al-Falah.
 
-Silakan datang ke pondok untuk mengikuti tes akademik dan membawa fotokopi Akta Kelahiran dan KK, pas foto 3×4 sebanyak empat lembar, fotokopi rapor terakhir, serta biaya pendaftaran Rp150.000.
+Silakan datang ke pondok untuk mengikuti tes akademik dan membawa fotokopi Akta Kelahiran dan KK, pas foto 3×4 sebanyak empat lembar, serta fotokopi rapor terakhir.
+
+Gratis biaya pendidikan selama satu tahun pertama.
 
 Informasi waktu kedatangan dapat ditanyakan dengan membalas pesan ini.
 ```
@@ -119,7 +121,8 @@ Silakan datang ke pondok untuk mengikuti tes akademik dan membawa:
 - Fotokopi Akta Kelahiran dan Kartu Keluarga
 - Pas foto 3×4 sebanyak empat lembar
 - Fotokopi rapor terakhir
-- Biaya pendaftaran Rp150.000
+
+Gratis biaya pendidikan selama satu tahun pertama.
 
 Informasi waktu kedatangan dapat ditanyakan dengan membalas pesan ini.
 ```

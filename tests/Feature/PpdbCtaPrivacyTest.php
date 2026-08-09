@@ -29,11 +29,14 @@ class PpdbCtaPrivacyTest extends TestCase
         $this->assertStringContainsString('data-ppdb-cta="home-hero" href="'.$registerUrl.'"', $home);
         $this->assertStringContainsString('href="'.route('ppdb').'"', $home);
         $this->assertStringContainsString('Lihat Syarat Pendaftaran', $home);
+        $this->assertStringContainsString('Gratis biaya pendidikan selama 1 tahun pertama', $home);
 
         $ppdb = $this->get(route('ppdb'))->assertOk()->getContent();
         $this->assertStringContainsString('data-ppdb-cta="main" href="'.$registerUrl.'"', $ppdb);
         $this->assertStringContainsString('data-ppdb-cta="fee" href="'.$registerUrl.'"', $ppdb);
         $this->assertStringContainsString('Tanya Panitia PPDB', $ppdb);
+        $this->assertStringContainsString('Gratis biaya pendidikan selama 1 tahun pertama', $ppdb);
+        $this->assertStringNotContainsString('Rp150.000', $ppdb);
     }
 
     public function test_closed_registration_changes_navbar_ctas_to_information_links(): void
@@ -45,7 +48,7 @@ class PpdbCtaPrivacyTest extends TestCase
         $this->assertStringContainsString('Info PPDB', $html);
     }
 
-    public function test_ppdb_page_explains_which_documents_are_brought_to_the_pondok(): void
+    public function test_ppdb_page_explains_documents_and_free_first_year_education(): void
     {
         $this->createOpenWave();
 
@@ -56,7 +59,8 @@ class PpdbCtaPrivacyTest extends TestCase
             ->assertSee('Pas foto 3×4 sebanyak empat lembar')
             ->assertSee('Fotokopi rapor terakhir')
             ->assertSee('tes akademik di pondok')
-            ->assertSee('Rp150.000 saat datang')
+            ->assertSee('Gratis biaya pendidikan selama 1 tahun pertama')
+            ->assertDontSee('Rp150.000')
             ->assertSee('tidak perlu diunggah ke website');
     }
 

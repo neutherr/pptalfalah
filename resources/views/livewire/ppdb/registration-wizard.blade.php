@@ -3,6 +3,7 @@
         <p class="mb-2 text-sm font-semibold text-primary">{{ $wave->period->academic_year }} · {{ $wave->name }}</p>
         <h1 class="text-3xl font-bold tracking-tight text-on-surface sm:text-4xl">Formulir Pendaftaran PPDB</h1>
         <p class="mt-3 max-w-2xl leading-relaxed text-on-surface-variant">Isi data secara bertahap. Data baru tersimpan setelah Anda mengirim formulir pada tahap konfirmasi.</p>
+        <p class="mt-3 font-semibold text-primary">Gratis biaya pendidikan selama 1 tahun pertama.</p>
     </header>
 
     @php($steps = [1 => 'Data Pribadi', 2 => 'Sekolah Asal', 3 => 'Orang Tua', 4 => 'Konfirmasi'])

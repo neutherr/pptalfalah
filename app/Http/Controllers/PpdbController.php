@@ -15,7 +15,6 @@ class PpdbController extends Controller
             ->with([
                 'waves' => fn ($q) => $q->orderBy('order'),
                 'requirements' => fn ($q) => $q->orderBy('order'),
-                'fees' => fn ($q) => $q->orderBy('order'),
             ])
             ->first();
 

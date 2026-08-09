@@ -42,6 +42,7 @@ class PpdbRegistrationWizardTest extends TestCase
         $this->get('/ppdb/daftar')
             ->assertOk()
             ->assertSee('Formulir Pendaftaran PPDB')
+            ->assertSee('Gratis biaya pendidikan selama 1 tahun pertama')
             ->assertSeeLivewire(RegistrationWizard::class)
             ->assertDontSee('cdn.jsdelivr.net/npm/alpinejs', false);
     }

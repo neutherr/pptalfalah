@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('meta_title', 'PPDB SMK Pesantren Tahfidz Jonggol | PPT Al-Falah')
-@section('meta_description', 'Informasi PPDB PPT Al-Falah, SMK Pertanian dan IT berbasis Pesantren Tahfidz di Jonggol, Bogor: jadwal, syarat, biaya, dan konsultasi pendaftaran.')
+@section('meta_description', 'Informasi PPDB PPT Al-Falah, SMK Pertanian dan IT berbasis Pesantren Tahfidz di Jonggol, Bogor dengan program gratis biaya pendidikan selama satu tahun pertama.')
 
 @section('content')
 @php
@@ -11,7 +11,6 @@
     $upcomingWave = $waves->first(fn ($wave) => $wave->registration_start->gt($today));
     $registrationWave = $openWave ?? $upcomingWave ?? $waves->sortByDesc('registration_end')->first();
     $registrationState = $openWave ? 'open' : ($upcomingWave ? 'upcoming' : ($registrationWave ? 'closed' : 'unavailable'));
-    $total = $activePeriod?->fees->sum('amount') ?? 0;
     $whatsappUrl = 'https://wa.me/'.($settings['whatsapp_number'] ?? '6281510029919').'?text='.urlencode("Assalamu'alaikum, saya ingin bertanya tentang PPDB SMK Al-Falah.");
 @endphp
 
@@ -26,7 +25,7 @@
                             PPDB SMK Al-Falah {{ $activePeriod->academic_year }}
                         </h1>
                         <p class="text-on-surface-variant text-lg leading-relaxed max-w-3xl mb-8">
-                            Pendaftaran SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor. Lihat jadwal, persyaratan, biaya, dan konsultasi pendaftaran di satu halaman.
+                            Pendaftaran SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor. Gratis biaya pendidikan selama 1 tahun pertama untuk seluruh santri baru.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3">
                             @if($openWave)
@@ -79,8 +78,8 @@
                         </dd>
                     </div>
                     <div class="py-5 sm:pl-6">
-                        <dt class="text-sm text-on-surface-variant mb-1">Estimasi biaya masuk</dt>
-                        <dd class="font-bold text-on-surface">{{ $total > 0 ? 'Rp '.number_format($total, 0, ',', '.') : 'Hubungi panitia' }}</dd>
+                        <dt class="text-sm text-on-surface-variant mb-1">Program biaya pendidikan</dt>
+                        <dd class="font-bold text-on-surface">Gratis 1 tahun pertama</dd>
                     </div>
                 </dl>
             </header>
@@ -94,7 +93,7 @@
                     @foreach([
                         ['title' => $settings['ppdb_step_1_title'] ?? 'Registrasi Online / Offline', 'desc' => $settings['ppdb_step_1_desc'] ?? 'Isi formulir dan lengkapi berkas administrasi.'],
                         ['title' => $settings['ppdb_step_2_title'] ?? 'Tes Seleksi Akademik', 'desc' => $settings['ppdb_step_2_desc'] ?? 'Ikuti tes masuk sesuai jadwal gelombang.'],
-                        ['title' => $settings['ppdb_step_3_title'] ?? 'Pengumuman & Daftar Ulang', 'desc' => $settings['ppdb_step_3_desc'] ?? 'Selesaikan administrasi setelah dinyatakan lulus.'],
+                        ['title' => $settings['ppdb_step_3_title'] ?? 'Pengumuman & Daftar Ulang', 'desc' => 'Panitia menghubungi calon santri untuk proses berikutnya.'],
                     ] as $index => $step)
                         <li class="py-6 md:px-6 first:pl-0 last:pr-0">
                             <span class="text-sm font-bold text-primary">0{{ $index + 1 }}</span>
@@ -146,48 +145,31 @@
                                 'Pas foto 3×4 sebanyak empat lembar',
                                 'Fotokopi rapor terakhir',
                                 'Mengikuti tes akademik di pondok',
-                                'Membayar biaya pendaftaran Rp150.000 saat datang',
                             ] as $index => $requirement)
                                 <li class="py-5 flex gap-5 items-start"><span class="text-sm font-bold text-primary pt-0.5">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><p class="font-semibold text-on-surface">{{ $requirement }}</p></li>
                             @endforeach
                         </ol>
-                        <p class="mt-4 text-sm font-semibold text-on-surface">Akta, KK, rapor, dan bukti pembayaran tidak perlu diunggah ke website.</p>
+                        <p class="mt-4 text-sm font-semibold text-on-surface">Akta, KK, dan rapor tidak perlu diunggah ke website.</p>
                     </section>
                 </div>
 
-                @if($activePeriod->fees->isNotEmpty())
-                    <aside class="lg:sticky lg:top-28 border border-outline-variant/50 bg-white rounded-xl p-6 lg:p-8" aria-labelledby="biaya-ppdb">
-                        <p class="text-sm font-semibold text-primary mb-2">Tahun Ajaran {{ $activePeriod->academic_year }}</p>
-                        <h2 id="biaya-ppdb" class="text-2xl font-bold font-headline text-on-surface mb-7">Rincian Biaya</h2>
+                <aside class="lg:sticky lg:top-28 border border-outline-variant/50 bg-white rounded-xl p-6 lg:p-8" aria-labelledby="program-gratis-ppdb">
+                    <p class="text-sm font-semibold text-primary mb-2">Program Seluruh Santri Baru</p>
+                    <h2 id="program-gratis-ppdb" class="text-2xl font-bold font-headline text-on-surface mb-3">Gratis Biaya Pendidikan</h2>
+                    <p class="text-4xl font-bold text-primary font-headline mb-4">1 Tahun Pertama</p>
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-7">
+                        Seluruh santri baru mendapat pembebasan biaya pendidikan selama satu tahun pertama sejak resmi menjadi santri.
+                    </p>
 
-                        <ul class="divide-y divide-outline-variant/30 border-y border-outline-variant/30 mb-7">
-                            @foreach($activePeriod->fees as $fee)
-                                <li class="py-4 flex justify-between gap-5 text-sm">
-                                    <span class="text-on-surface-variant">{{ $fee->name }}</span>
-                                    <span class="font-bold text-on-surface text-right">{{ $fee->formatted_amount }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-
-                        <div class="border-t-2 border-primary pt-5 mb-5">
-                            <p class="text-sm text-on-surface-variant mb-1">Total biaya masuk</p>
-                            <p class="text-3xl font-bold text-primary font-headline">Rp {{ number_format($total, 0, ',', '.') }}</p>
-                        </div>
-
-                        <p class="text-xs text-on-surface-variant leading-relaxed mb-6">
-                            Biaya merupakan estimasi reguler dan dapat dicicil sesuai ketentuan administrasi sekolah dan asrama.
-                        </p>
-
-                        @if($openWave)
-                            <a data-ppdb-cta="fee" href="{{ route('ppdb.register') }}" class="mb-3 flex justify-center w-full px-5 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
-                                Daftar Sekarang
-                            </a>
-                        @endif
-                        <a href="{{ $whatsappUrl }}" target="_blank" class="flex justify-center w-full px-5 py-3.5 border border-outline-variant hover:border-primary text-on-surface font-bold rounded-lg transition-colors">
-                            Tanya Panitia PPDB
+                    @if($openWave)
+                        <a data-ppdb-cta="fee" href="{{ route('ppdb.register') }}" class="mb-3 flex justify-center w-full px-5 py-3.5 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors">
+                            Daftar Sekarang
                         </a>
-                    </aside>
-                @endif
+                    @endif
+                    <a href="{{ $whatsappUrl }}" target="_blank" class="flex justify-center w-full px-5 py-3.5 border border-outline-variant hover:border-primary text-on-surface font-bold rounded-lg transition-colors">
+                        Tanya Panitia PPDB
+                    </a>
+                </aside>
             </div>
         @else
             <div class="max-w-2xl py-16">

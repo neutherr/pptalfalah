@@ -151,6 +151,8 @@ class PpdbRegistrationAdminTest extends TestCase
         $this->assertStringContainsString($registration->full_name, $message);
         $this->assertStringContainsString($registration->registration_number, $message);
         $this->assertStringContainsString('telah ditinjau', $message);
+        $this->assertStringContainsString('Gratis biaya pendidikan selama satu tahun pertama', $message);
+        $this->assertStringNotContainsString('Rp150.000', $message);
         $this->assertStringNotContainsString($registration->nik, $message);
         $this->assertStringNotContainsString($registration->address, $message);
         $this->assertStringNotContainsString($registration->public_token, $message);

@@ -79,6 +79,9 @@
                         </button>
                     @endif
                 </div>
+                <p class="mt-4 text-sm font-bold text-white animate-on-scroll" style="animation-delay: 300ms;">
+                    Gratis biaya pendidikan selama 1 tahun pertama.
+                </p>
             </div>
         </div>
     </section>
@@ -281,7 +284,7 @@
                         @foreach([
                                 ['title' => $settings['ppdb_step_1_title'] ?? 'Registrasi Online / Offline', 'desc' => $settings['ppdb_step_1_desc'] ?? ''],
                                 ['title' => $settings['ppdb_step_2_title'] ?? 'Tes Seleksi Akademik', 'desc' => $settings['ppdb_step_2_desc'] ?? ''],
-                                ['title' => $settings['ppdb_step_3_title'] ?? 'Pengumuman & Daftar Ulang', 'desc' => $settings['ppdb_step_3_desc'] ?? ''],
+                                ['title' => $settings['ppdb_step_3_title'] ?? 'Pengumuman & Daftar Ulang', 'desc' => 'Panitia menghubungi calon santri untuk proses berikutnya.'],
                             ] as $index => $step)
                             <div class="flex gap-6 items-start relative {{ !$loop->last ? 'pb-8' : '' }} group">
                                 @if(!$loop->last)

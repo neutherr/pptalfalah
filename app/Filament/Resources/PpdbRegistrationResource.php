@@ -54,7 +54,7 @@ class PpdbRegistrationResource extends Resource
             $phone = '62'.$phone;
         }
 
-        $message = "Assalamu'alaikum Bapak/Ibu.\n\nPendaftaran online ananda {$registration->full_name} dengan nomor {$registration->registration_number} telah ditinjau oleh panitia PPDB PPT Al-Falah.\n\nSilakan datang ke pondok untuk mengikuti tes akademik dan membawa fotokopi Akta Kelahiran dan KK, pas foto 3×4 sebanyak empat lembar, fotokopi rapor terakhir, serta biaya pendaftaran Rp150.000.\n\nInformasi waktu kedatangan dapat ditanyakan dengan membalas pesan ini.";
+        $message = "Assalamu'alaikum Bapak/Ibu.\n\nPendaftaran online ananda {$registration->full_name} dengan nomor {$registration->registration_number} telah ditinjau oleh panitia PPDB PPT Al-Falah.\n\nSilakan datang ke pondok untuk mengikuti tes akademik dan membawa fotokopi Akta Kelahiran dan KK, pas foto 3×4 sebanyak empat lembar, serta fotokopi rapor terakhir.\n\nGratis biaya pendidikan selama satu tahun pertama. Informasi waktu kedatangan dapat ditanyakan dengan membalas pesan ini.";
 
         return 'https://wa.me/'.$phone.'?text='.urlencode($message);
     }
