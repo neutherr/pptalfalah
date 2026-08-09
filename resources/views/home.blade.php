@@ -89,8 +89,8 @@
     <div
         data-hero-transition="blur"
         aria-hidden="true"
-        class="pointer-events-none relative z-20 -mt-20 h-20 bg-surface-container backdrop-blur-xl sm:-mt-24 sm:h-24"
-        style="-webkit-mask-image: linear-gradient(to bottom, transparent, black); mask-image: linear-gradient(to bottom, transparent, black);">
+        class="pointer-events-none relative z-20 -mt-20 -mb-12 h-32 bg-surface-container backdrop-blur-2xl sm:-mt-24 sm:-mb-16 sm:h-40"
+        style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 58%, black 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 58%, black 100%);">
     </div>
 
     {{-- ===== WHO WE ARE ===== --}}

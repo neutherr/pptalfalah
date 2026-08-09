@@ -80,7 +80,8 @@ class HomeAccessibilityTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('data-hero-transition="blur"', false)
-            ->assertSee('backdrop-blur-xl', false);
+            ->assertSee('backdrop-blur-2xl', false)
+            ->assertSee('-mb-12', false);
     }
 
     public function test_footer_headings_do_not_skip_levels(): void
