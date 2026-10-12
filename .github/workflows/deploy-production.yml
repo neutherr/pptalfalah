@@ -22,7 +22,7 @@ jobs:
             echo "--- git pull ---"
             git pull origin main
             echo "--- composer install ---"
-            composer install --no-dev --optimize-autoloader
+            composer install --no-dev --optimize-autoloader --no-scripts
             echo "--- migrate ---"
             php artisan migrate --force
             echo "--- optimize ---"
