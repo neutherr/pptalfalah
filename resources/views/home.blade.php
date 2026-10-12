@@ -133,13 +133,28 @@
                     </div>
                 </div>
 
-                {{-- Bagian Gambar Eksklusif --}}
+                {{-- Media Who We Are --}}
                 <div class="relative">
                     <div class="absolute -inset-4 bg-primary/5 rounded-3xl transform rotate-3 z-0"></div>
                     <div class="absolute -inset-4 bg-secondary/10 rounded-3xl transform -rotate-2 z-0"></div>
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDcZsxG5SewyK8JZxLEfM1O5zIBC2vkdGlO4r-Zhn0mpCQDYXv9rGfnQVwqBTqC9wEVNRq2mk6hqd9EgOQLG1jiWa6yI9diYAiHK3HgQEnDAheVLSWlMDBT0pATmMTfuhDL6fV9VLfrt5k90rQI22z1QwkZsjwrbBQAEGGcJf0rWnNfRNXbYzr9GSp-1xGT4LltlBYkpmSyWk_ULyz9GNrvbTdMZgbWUyXmwQAd8rZhVLJPnb4CUUSGbtHATx53HBlgBBsSUj9Yuw"
+                    @if($aboutVideo && $aboutVideo['type'] === 'youtube')
+                        <iframe src="{{ $aboutVideo['url'] }}" title="Video profil Al-Falah"
+                            class="relative z-10 w-full aspect-video rounded-2xl shadow-xl bg-black"
+                            loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @elseif($aboutVideo)
+                        <video src="{{ $aboutVideo['url'] }}" controls playsinline preload="none"
+                            @if($aboutImageUrl) poster="{{ $aboutImageUrl }}" @endif
+                            aria-label="Video profil Al-Falah"
+                            class="relative z-10 w-full aspect-video object-contain rounded-2xl shadow-xl bg-black">
+                            Browser Anda tidak mendukung pemutar video.
+                            <a href="{{ $aboutVideo['url'] }}">Buka video profil Al-Falah</a>
+                        </video>
+                    @else
+                    <img src="{{ $aboutImageUrl ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuDDcZsxG5SewyK8JZxLEfM1O5zIBC2vkdGlO4r-Zhn0mpCQDYXv9rGfnQVwqBTqC9wEVNRq2mk6hqd9EgOQLG1jiWa6yI9diYAiHK3HgQEnDAheVLSWlMDBT0pATmMTfuhDL6fV9VLfrt5k90rQI22z1QwkZsjwrbBQAEGGcJf0rWnNfRNXbYzr9GSp-1xGT4LltlBYkpmSyWk_ULyz9GNrvbTdMZgbWUyXmwQAd8rZhVLJPnb4CUUSGbtHATx53HBlgBBsSUj9Yuw' }}"
                         alt="Program Informatika dan Agribisnis Al-Falah"
                         class="relative z-10 w-full h-[300px] lg:h-[500px] object-cover rounded-2xl shadow-xl">
+                    @endif
                 </div>
             </div>
         </div>

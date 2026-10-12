@@ -6,6 +6,12 @@ class HomepageContent
 {
     public const MISSION_COUNT = 8;
 
+    public const MEDIA_DEFAULTS = [
+        'about_media_type' => 'image',
+        'about_image' => '',
+        'about_video_url' => '',
+    ];
+
     public static function clientRevision(): array
     {
         $content = [
@@ -56,6 +62,10 @@ class HomepageContent
         for ($i = 1; $i <= self::MISSION_COUNT; $i++) {
             $content["mission_{$i}_title"] = $settings["mission_{$i}_title"] ?? '';
             $content["mission_{$i}_desc"] = $settings["mission_{$i}_desc"] ?? '';
+        }
+
+        foreach (self::MEDIA_DEFAULTS as $key => $default) {
+            $content[$key] = $settings[$key] ?? $default;
         }
 
         return $content;

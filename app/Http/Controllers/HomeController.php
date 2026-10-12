@@ -9,6 +9,8 @@ use App\Models\PpdbPeriod;
 use App\Models\Program;
 use App\Models\SiteSetting;
 use App\Support\HomepageContent;
+use App\Support\HomepageMedia;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -40,6 +42,10 @@ class HomeController extends Controller
 
         $settings = SiteSetting::pluck('value', 'key');
         $homepage = HomepageContent::fromSettings($settings->all());
+        $aboutVideo = $homepage['about_media_type'] === 'video'
+            ? HomepageMedia::video($homepage['about_video_url']) : null;
+        $aboutImageUrl = filled($homepage['about_image'])
+            ? Storage::disk('public')->url($homepage['about_image']) : null;
 
         $missions = [];
         for ($i = 1; $i <= HomepageContent::MISSION_COUNT; $i++) {
@@ -62,6 +68,8 @@ class HomeController extends Controller
             'programs',
             'settings',
             'homepage',
+            'aboutVideo',
+            'aboutImageUrl',
             'missions'
         ));
     }

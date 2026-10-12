@@ -4,11 +4,16 @@ namespace App\Filament\Pages;
 
 use App\Models\SiteSetting;
 use App\Support\HomepageContent;
+use App\Support\HomepageMedia;
+use Closure;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
@@ -56,6 +61,23 @@ class HomepageSettings extends Page
                 Textarea::make('school_motto')->label('Moto sekolah')->rows(2)->maxLength(1000)
                     ->helperText('Ditampilkan di bawah visi. Kosongkan untuk menyembunyikan.'),
             ]),
+            Section::make('Media Who We Are')->description('Gambar atau video di samping pengenalan sekolah.')->schema([
+                Select::make('about_media_type')->label('Tampilkan media')
+                    ->options(['image' => 'Gambar', 'video' => 'Video'])->required()->in(['image', 'video'])->live(),
+                FileUpload::make('about_image')->label('Gambar / sampul video (opsional)')
+                    ->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048)->disk('public')->visibility('public')->directory('homepage')
+                    ->helperText('JPG, PNG, atau WebP, maksimal 2 MB. Kosongkan untuk memakai foto tanaman bawaan. Untuk video MP4/WebM, gambar ini menjadi sampul.'),
+                TextInput::make('about_video_url')->label('Tautan video')->maxLength(2048)
+                    ->visible(fn (Get $get): bool => $get('about_media_type') === 'video')
+                    ->required(fn (Get $get): bool => $get('about_media_type') === 'video')
+                    ->helperText('Tautan YouTube atau URL HTTPS langsung ke file .mp4 / .webm. Video diputar saat pengunjung menekan tombol putar.')
+                    ->rules([fn (): Closure => function (string $attribute, mixed $value, Closure $fail): void {
+                        if (HomepageMedia::video((string) $value) === null) {
+                            $fail('Gunakan tautan YouTube yang valid atau URL HTTPS file MP4/WebM.');
+                        }
+                    }]),
+            ]),
             Section::make('Misi sekolah')->description('Tersedia delapan poin. Judul boleh kosong; poin yang seluruh isinya kosong tidak ditampilkan.')
                 ->schema($missions),
         ])->statePath('data');
@@ -66,7 +88,10 @@ class HomepageSettings extends Page
         return [
             Action::make('loadClientRevision')->label('Muat revisi klien')->color('gray')
                 ->action(function (): void {
-                    $this->form->fill(HomepageContent::clientRevision());
+                    // Update text fields only, preserving pending uploads and selected media.
+                    foreach (HomepageContent::clientRevision() as $key => $value) {
+                        $this->data[$key] = $value;
+                    }
                     Notification::make()->title('Revisi dimuat ke formulir')
                         ->body('Periksa isinya, lalu klik Simpan perubahan untuk menerapkan ke website.')
                         ->info()->send();
@@ -79,7 +104,11 @@ class HomepageSettings extends Page
         $data = $this->form->getState();
 
         DB::transaction(function () use ($data): void {
-            foreach (array_keys(HomepageContent::clientRevision()) as $key) {
+            foreach (array_keys(HomepageContent::clientRevision() + HomepageContent::MEDIA_DEFAULTS) as $key) {
+                // Hidden fields retain their stored value when switching media modes.
+                if (! array_key_exists($key, $data)) {
+                    continue;
+                }
                 $group = str_starts_with($key, 'mission_') || in_array($key, ['vision_headline', 'school_motto'], true)
                     ? 'vision' : 'general';
                 SiteSetting::set($key, $data[$key] ?? '', $group);
