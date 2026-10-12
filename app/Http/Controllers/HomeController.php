@@ -8,6 +8,7 @@ use App\Models\HeroSection;
 use App\Models\PpdbPeriod;
 use App\Models\Program;
 use App\Models\SiteSetting;
+use App\Support\HomepageContent;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -30,7 +31,7 @@ class HomeController extends Controller
 
         $activePpdb = PpdbPeriod::active()
             ->with([
-                'waves'        => fn ($q) => $q->where('is_active', true)->orderBy('order'),
+                'waves' => fn ($q) => $q->where('is_active', true)->orderBy('order'),
                 'requirements' => fn ($q) => $q->orderBy('order')->limit(5),
             ])
             ->first();
@@ -38,16 +39,17 @@ class HomeController extends Controller
         $programs = Program::active()->get();
 
         $settings = SiteSetting::pluck('value', 'key');
+        $homepage = HomepageContent::fromSettings($settings->all());
 
-        // Missions array (from site_settings, indexed 1-5)
         $missions = [];
-        for ($i = 1; $i <= 5; $i++) {
-            $title = $settings["mission_{$i}_title"] ?? null;
-            if ($title) {
+        for ($i = 1; $i <= HomepageContent::MISSION_COUNT; $i++) {
+            $title = trim($homepage["mission_{$i}_title"]);
+            $description = trim($homepage["mission_{$i}_desc"]);
+            if ($title !== '' || $description !== '') {
                 $missions[] = [
                     'number' => str_pad($i, 2, '0', STR_PAD_LEFT),
-                    'title'  => $title,
-                    'desc'   => $settings["mission_{$i}_desc"] ?? '',
+                    'title' => $title,
+                    'desc' => $description,
                 ];
             }
         }
@@ -59,6 +61,7 @@ class HomeController extends Controller
             'activePpdb',
             'programs',
             'settings',
+            'homepage',
             'missions'
         ));
     }

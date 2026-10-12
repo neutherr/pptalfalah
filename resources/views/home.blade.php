@@ -47,12 +47,14 @@
             <div class="max-w-3xl">
                 <h1
                     class="font-hero text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white [&_span]:text-inherit leading-[1.2] mb-4 sm:mb-6 animate-on-scroll">
-                    {!! $settings['vision_headline'] ?? 'Menanam Iman, Menuai Kemandirian<br/>Pesantren Tahfidz, Informatika & Agribisnis Terpadu' !!}
+                    {!! nl2br(e($homepage['hero_title'])) !!}
                 </h1>
                 <p class="text-base sm:text-lg lg:text-xl text-emerald-50/80 max-w-xl mb-8 sm:mb-10 leading-relaxed font-medium animate-on-scroll"
                     style="animation-delay: 200ms;">
-                    {{ $settings['site_tagline'] ?? 'SMK Al-Falah Boarding School' }}
-                    <span class="block mt-2">SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor.</span>
+                    {!! nl2br(e($homepage['site_tagline'])) !!}
+                    @if(filled($homepage['hero_description']))
+                        <span class="block mt-2">{!! nl2br(e($homepage['hero_description'])) !!}</span>
+                    @endif
                 </p>
 
                 <div class="flex flex-col sm:flex-row flex-wrap gap-4">
@@ -158,9 +160,15 @@
                     <span class="h-px w-10 bg-secondary/30"></span>
                 </div>
                 <h2
-                    class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-primary leading-tight tracking-tighter mb-6">
-                    {!! nl2br(e($settings['vision_headline'] ?? "Mencetak Generasi\nQur'ani, Mandiri,\ndan Berprestasi.")) !!}
+                    class="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold text-primary leading-relaxed mb-6">
+                    {!! nl2br(e($homepage['vision_headline'])) !!}
                 </h2>
+                @if(filled($homepage['school_motto']))
+                    <div class="mt-8">
+                        <h3 class="text-secondary font-bold tracking-widest uppercase text-xs mb-3">Moto</h3>
+                        <p class="text-lg sm:text-xl font-semibold text-primary">{!! nl2br(e($homepage['school_motto'])) !!}</p>
+                    </div>
+                @endif
             </div>
 
             {{-- Misi --}}
@@ -185,11 +193,15 @@
                                 </div>
                             </div>
                             <div class="text-center md:text-left">
-                                <h3
-                                    class="font-body text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">
-                                    {{ $mission['title'] }}
-                                </h3>
-                                <p class="text-on-surface-variant text-base leading-relaxed">{{ $mission['desc'] }}</p>
+                                @if($mission['title'] !== '')
+                                    <h3
+                                        class="font-body text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">
+                                        {{ $mission['title'] }}
+                                    </h3>
+                                @endif
+                                @if($mission['desc'] !== '')
+                                    <p class="text-on-surface-variant text-base leading-relaxed">{!! nl2br(e($mission['desc'])) !!}</p>
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -151,7 +151,7 @@ class SeoTest extends TestCase
         $this->get('https://pptalfalah.com/')
             ->assertOk()
             ->assertSee('<title>SMK Pertanian &amp; IT Pesantren Tahfidz Jonggol | Al-Falah</title>', false)
-            ->assertSee('<span class="block mt-2">SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor.</span>', false)
+            ->assertSeeText('SMK Pertanian & IT berbasis Pesantren Tahfidz di Jonggol, Bogor.')
             ->assertSee(route('programs.index'), false)
             ->assertSee(route('ppdb'), false)
             ->assertSee(route('fasilitas'), false)
