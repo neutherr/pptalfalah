@@ -1,0 +1,8 @@
+# Uploaded files must never run as code.
+<FilesMatch "\.(php\d?|phtml|phar|pht|shtml|cgi|pl|py)$">
+    Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+Options -ExecCGI -Indexes
