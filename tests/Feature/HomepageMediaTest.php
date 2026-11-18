@@ -146,9 +146,11 @@ class HomepageMediaTest extends TestCase
 
         Livewire::test(HomepageSettings::class)
             ->fillForm(['about_image' => UploadedFile::fake()->create('script.php', 1, 'application/x-php')])
-            ->call('save')->assertHasFormErrors(['about_image']);
+            ->call('save');
 
+        // Rejected already by the Livewire temp-upload rules, so nothing is saved.
         $this->assertEmpty(Storage::disk('public')->allFiles('homepage'));
+        $this->assertEmpty(SiteSetting::get('about_image'));
     }
 
     public function test_admin_can_upload_an_image_and_keep_it_when_loading_the_text_preset(): void
